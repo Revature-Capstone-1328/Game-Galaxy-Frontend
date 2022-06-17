@@ -9,7 +9,7 @@ import { StoreComponent } from './components/store/store.component';
 
 const routes: Routes = [{
   path: "",
-  component: LoginComponent
+  component: StoreComponent
 }, {
   path: "login",
   component: LoginComponent
