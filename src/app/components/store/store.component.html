@@ -1,1 +1,48 @@
-<p>store works!</p>
+<nav class="navbar SearBar">
+  <input class="form-control" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+    placeholder="Enter the name to search">
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-lg-4 col-xl-3 mb-5" *ngFor="let game of games">
+      <div class="card">
+        <div class="card-topper card-img-top">{{game.name}}</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="test" class="table table-bordered table-hover">
+              <tbody>
+                <tr *ngIf="game?.thumb">
+                  <td class="text-center"><img src="{{game.thumb}}"></td>
+                </tr>
+                <tr *ngIf="game?.gameId">
+                  <td class="titles">Game ID</td>
+                  <td class="text-center">{{game.gameId}}</td>
+                </tr>
+                <tr *ngIf="game?.retailPrice">
+                  <td class="titles">Retail Price</td>
+                  <td class="text-center">{{game.retailPrice}}</td>
+                </tr>
+                <tr *ngIf="game?.releaseDate">
+                  <td class="titles">Release Date</td>
+                  <td class="text-center">{{game.releaseDate}}</td>
+                </tr>
+                <tr *ngIf="game?.publisher">
+                  <td class="titles">Publisher</td>
+                  <td class="text-center">{{game.publisher}}</td>
+                </tr>
+            </table>
+          </div>
+
+          <div>
+            <button (click)="addToCart(game.gameId)" type="button" class="btn btn-outline-secondary">
+              <i class="glyphicon glyphicon-star"></i>
+              <span>Add to cart</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
