@@ -1,5 +1,5 @@
 export class Game {
-    constructor(public gameId int, public name string, public retailPrice double, public releaseDate Date, 
-        public publisher string, public thumb? string){}
+    constructor(public gameId:number, public name:string, public retailPrice:number, public releaseDate:Date,
+        public publisher:string, public thumb?:string){}
 
 }
