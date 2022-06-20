@@ -11,10 +11,13 @@ export class StoreComponent implements OnInit {
 
   games: Game[] = [];
   name: string = "";
+  //dealId: string = "";
+  //game: Game= new Game("","",0,"","","");
 
   constructor(private gameService:GameService) { }
 
   ngOnInit(): void {
+    this.getGames();
   }
 
   Search() {
@@ -26,10 +29,51 @@ export class StoreComponent implements OnInit {
     }
   }
 
-  getGames = () => {
-    this.gameService.getGames().subscribe({
+  getGames(){
+    console.log("Fetching games");
+
+    for (let id = 7; id < 15; id++) {
+      console.log("Fetching game no " + id);
+      this.getGame(String(id));
+    }
+    /*
+    this.getGame(String(7));
+    this.getGame(String(120));
+    this.getGame(String(132));*/
+  }
+
+  getGame = (gameId:string) => {
+    //console.log("Fetching game");
+    this.gameService.getGame(gameId).subscribe({
       next: (data: any) => {
-        this.games = data;
+        console.log("Getting game "+gameId);
+        if (data.deals.length>0){
+          console.log(data);
+          let game = new Game("", "", 0, "", "", "");
+          game.name = data.info.title; //name
+          game.thumb = data.info.thumb; //thumb
+          //this.dealId = data.deals[0].dealID; //dealID
+          this.gameService.getDeal(data.deals[0].dealID).subscribe({
+            next: (data: any) => {
+              console.log("Getting deal for "+gameId);
+              console.log(data);
+              game.gameId = data.gameInfo.gameID; //gameId
+              game.retailPrice = data.gameInfo.retailPrice; //retailPrice
+              game.releaseDate = data.gameInfo.releaseDate; //releaseDate
+              game.publisher = data.gameInfo.publisher; //publisher
+              console.log("Gathered game " +gameId+":");
+              console.log(game);
+              this.games.push(game);
+            },
+            error: () => {
+              console.log("Unable to access game from API.");
+            }
+          });
+        }else{
+          console.log("Game "+gameId+" is an empty game")
+        }
+      //this.games.push(this.game);
+
       },
       error: () => {
         console.log("Unable to access game from API.");
