@@ -28,12 +28,10 @@ export class UserService {
     this.isLogged = false;
   }
 
-  update(eMail:string){
+  update(eMail:string):Observable<unknown>|null{
     if(this.activeUser){
       this.activeUser.eMail = eMail;
-      console.log("Email address changed!");
-      console.log(this.activeUser);
-      return this.http.patch(this.url,this.activeUser,{withCredentials:true});
+      return this.http.put(this.url,this.activeUser,{withCredentials:true});
     }
     console.log("Updating went wrong!");
     return null;

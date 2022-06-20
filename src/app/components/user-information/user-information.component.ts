@@ -20,7 +20,14 @@ export class UserInformationComponent implements OnInit {
 
   update(){
     if(this.newEmail){
-      this.userService.update(this.newEmail); 
+      this.userService.update(this.newEmail)?.subscribe({
+        next:()=>{
+          console.log("Email changed.");
+        },
+        error:()=>{
+          console.log("Something went wrong changing the Email."); 
+        }
+      })
     }
   }
 
