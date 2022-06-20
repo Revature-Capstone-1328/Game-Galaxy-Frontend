@@ -10,6 +10,7 @@ export class UserService {
   url:string = 'http://localhost:8087/users/';
 
   activeUser:User|null = null;
+  isLogged:boolean = false;
 
   constructor(private http:HttpClient) { }
 
@@ -24,15 +25,17 @@ export class UserService {
 
   logout(){
     this.activeUser = null; 
+    this.isLogged = false;
   }
 
   update(eMail:string){
     if(this.activeUser){
       this.activeUser.eMail = eMail;
-      return this.http.put(this.url,this.activeUser,{withCredentials:true});
+      console.log("Email address changed!");
+      console.log(this.activeUser);
+      return this.http.patch(this.url,this.activeUser,{withCredentials:true});
     }
     console.log("Updating went wrong!");
     return null;
   }
-
 }

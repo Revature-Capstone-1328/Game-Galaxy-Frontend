@@ -15,8 +15,6 @@ export class LoginComponent implements OnInit {
   username:string = '';
   password:string = '';
 
-  sharedUser:User = new User(0,"","","");
-
   constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {   
@@ -28,14 +26,12 @@ export class LoginComponent implements OnInit {
       {
         next:(authUser:User)=>{
           this.userService.activeUser = authUser;
-          this.userService.loggedIn = true;
+          this.userService.isLogged = true;
           this.router.navigate(["/store"]);
-          this.sharedUser = authUser;
         },
         error:()=>{
           this.userService.activeUser = null;
           console.log("login failed");
-          this.userService.loggedIn = false;
           this.router.navigate(["/register"]);
         }
       }

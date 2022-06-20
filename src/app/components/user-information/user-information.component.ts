@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 export class UserInformationComponent implements OnInit {
 
   newEmail:string="";
+  username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
+  eMail?:string = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
 
   constructor(private userService:UserService) { }
 

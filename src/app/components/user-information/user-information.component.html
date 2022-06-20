@@ -1,4 +1,17 @@
-<div class="register">
+<h2 *ngIf="!username">You need to login to view this page!</h2>
+<div *ngIf="username">
+  <table>
+    <thead>
+      <th>Username</th>
+      <th>E-Mail</th>
+    </thead>
+    <tbody>
+      <td>{{username}}</td>
+      <td>{{eMail}}</td>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="username" class="register">
     <div class="form">
       <h2 class="title">Update Information</h2>
       <form class="reister-form">
