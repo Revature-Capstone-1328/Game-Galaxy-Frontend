@@ -25,7 +25,7 @@
                 </tr>
                 <tr *ngIf="game?.releaseDate">
                   <td class="titles">Release Date</td>
-                  <td class="text-center">{{game.releaseDate}}</td>
+                  <td class="text-center">{{game.releaseDate.toLocaleDateString()}}</td>
                 </tr>
                 <tr *ngIf="game?.publisher">
                   <td class="titles">Publisher</td>

@@ -11,6 +11,7 @@ export class StoreComponent implements OnInit {
 
   games: Game[] = [];
   name: string = "";
+  date: Date= new Date();
   //dealId: string = "";
   //game: Game= new Game("","",0,"","","");
 
@@ -49,7 +50,7 @@ export class StoreComponent implements OnInit {
         console.log("Getting game "+gameId);
         if (data.deals.length>0){
           console.log(data);
-          let game = new Game("", "", 0, "", "", "");
+          let game = new Game("", "", 0, this.date, "", "");
           game.name = data.info.title; //name
           game.thumb = data.info.thumb; //thumb
           //this.dealId = data.deals[0].dealID; //dealID
@@ -59,7 +60,8 @@ export class StoreComponent implements OnInit {
               console.log(data);
               game.gameId = data.gameInfo.gameID; //gameId
               game.retailPrice = data.gameInfo.retailPrice; //retailPrice
-              game.releaseDate = data.gameInfo.releaseDate; //releaseDate
+              let date = new Date(data.gameInfo.releaseDate *1000);
+              game.releaseDate = date; //releaseDate
               game.publisher = data.gameInfo.publisher; //publisher
               console.log("Gathered game " +gameId+":");
               console.log(game);
