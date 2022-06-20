@@ -1,0 +1,12 @@
+<div class="register">
+    <div class="form">
+      <h2 class="title">Update Information</h2>
+      <form class="reister-form">
+        <div class="form-group">
+          <label for="registerEmail">Changing E-mail:</label>
+          <input type="text" id="registerEmail" name="registerEmail" class="form-control" [(ngModel)]="newEmail">
+        </div>
+      </form>
+      <button class="btn btn-primary" (click)="update()">Update E-Mail Address</button>
+    </div>
+  </div>
