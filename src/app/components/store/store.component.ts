@@ -39,10 +39,6 @@ export class StoreComponent implements OnInit {
       console.log("Fetching game no " + id);
       this.getGameFromAPI(id);
     }
-    /*
-    this.getGame(String(7));
-    this.getGame(String(120));
-    this.getGame(String(132));*/
   }
 
   //Function gets called to store game from API into database
@@ -53,21 +49,29 @@ export class StoreComponent implements OnInit {
         console.log("Getting game "+gameID);
         if (data.deals.length>0){
           console.log(data);
-          let game = new Game(0, "", 0, this.date, "", "");
+          let game = new Game(0,0,"",0,0,0,"",0,0,0,"",this.date, "", "");
           game.name = data.info.title; //name
           game.thumb = data.info.thumb; //thumb
           this.gameService.getDeal(data.deals[0].dealID).subscribe({
             next: (data: any) => {
               console.log("Getting deal for "+gameID);
               console.log(data);
-              game.gameID = data.gameInfo.gameID; //gameId
+              game.gameID = data.gameInfo.gameID; //gameID
+              game.storeID = data.gameInfo.storeID; //storeID
+              game.steamAppID = data.gameInfo.steamAppID; //steamAppID
+              game.salePrice = data.gameInfo.salePrice; //salePrice
               game.retailPrice = data.gameInfo.retailPrice; //retailPrice
+              game.steamRatingText = data.gameInfo.steamRatingText; //steamRatingText
+              game.steamRatingPercent = data.gameInfo.steamRatingPercent; //steamRatingPercent
+              game.steamRatingCount = data.gameInfo.steamRatingCount; //steamRatingCount
+              game.metacriticScore = data.gameInfo.metacriticScore; //metacriticScore
+              game.metacriticLink = data.gameInfo.metacriticLink; //metacriticLink
               let date = new Date(data.gameInfo.releaseDate *1000);
               game.releaseDate = date; //releaseDate
               game.publisher = data.gameInfo.publisher; //publisher
               console.log("Gathered game " +gameID+":");
               console.log(game);
-              this.games.push(game); //Testing
+              //this.games.push(game); //Testing
               this.addGame(game); //Posts to Database
             },
             error: () => {
