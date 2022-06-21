@@ -36,7 +36,7 @@
           <div *ngIf="game?.releaseDate" class="d-flex justify-content-between align-items-center">
             <h5 class="product-info">Release date:</h5>
             <div class="d-flex flex-column mb-2">
-              <span>{{game.releaseDate.toLocaleDateString()}}</span>
+              <span>{{game.releaseDate.toLocaleString().split("T")[0]}}</span>
             </div>
           </div>
 

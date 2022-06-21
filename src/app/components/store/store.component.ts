@@ -20,7 +20,8 @@ export class StoreComponent implements OnInit {
   constructor(private gameService:GameService) { }
 
   ngOnInit(): void {
-    this.getGames();
+    //this.getGames(); //This only gets called once to fetch from API into database
+    this.getAllGames();
   }
 
   Search() {
@@ -44,7 +45,7 @@ export class StoreComponent implements OnInit {
   //Function gets called to store game from API into database
   getGameFromAPI = (gameID:number) => {
     //console.log("Fetching game");
-    this.gameService.getGame(gameID).subscribe({
+    this.gameService.getGameFromAPI(gameID).subscribe({
       next: (data: any) => {
         console.log("Getting game "+gameID);
         if (data.deals.length>0){
@@ -86,6 +87,18 @@ export class StoreComponent implements OnInit {
       },
       error: () => {
         console.log("Unable to access game from API.");
+      }
+    });
+  }
+
+  getAllGames = () => {
+    console.log("Fetching games");
+    this.gameService.getAllGames().subscribe({
+      next: (data: Game[]) => {
+        this.games=data;
+      },
+      error: () => {
+        console.log("Unable to access games from Database.");
       }
     });
   }
