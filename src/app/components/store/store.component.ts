@@ -87,5 +87,18 @@ export class StoreComponent implements OnInit {
   addToCart(gameId: string){
 
   }
+  addGame(game: Game){
+
+  
+    this.gameService.addGame(game).subscribe({
+      next:()=>{
+        console.log("New Game added.");
+      },
+      error:()=>{
+        console.log("Couldn't add new game!");
+      }
+    
+    })
+  }
 
 }
