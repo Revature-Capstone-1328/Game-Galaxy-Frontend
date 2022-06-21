@@ -26,10 +26,10 @@
             </div>
           </div>
 
-          <div *ngIf="game?.gameId" class="d-flex justify-content-between align-items-center">
+          <div *ngIf="game?.gameID" class="d-flex justify-content-between align-items-center">
             <h5 class="product-info">Game ID:</h5>
             <div class="d-flex flex-column mb-2">
-              <span class="titles">{{game.gameId}}</span>
+              <span class="titles">{{game.gameID}}</span>
             </div>
           </div>
 
@@ -44,7 +44,7 @@
 
         <div class="card-body">
           <div>
-            <button (click)="addToCart(game.gameId)" type="button" class="btn btn-outline-secondary">
+            <button (click)="addToCart(game.gameID)" type="button" class="btn btn-outline-secondary">
               <i class="glyphicon glyphicon-star"></i>
               <span>Add to cart</span>
             </button>

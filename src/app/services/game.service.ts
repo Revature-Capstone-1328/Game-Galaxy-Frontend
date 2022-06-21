@@ -9,12 +9,13 @@ import { Game } from '../models/game';
 export class GameService {
 
   apiUrl: string = 'https://www.cheapshark.com/api/1.0/';
+  dbUrl: string = 'http://localhost:8087/game/';
 
 
   constructor(private http: HttpClient) { }
 
-  getGame(gameId:string): Observable<any> {
-    return this.http.get(this.apiUrl +"games?id="+gameId) as Observable<any>;
+  getGame(gameID:number): Observable<any> {
+    return this.http.get(this.apiUrl +"games?id="+gameID) as Observable<any>;
   }
 
   getDeal(dealId:string): Observable<any> {
@@ -22,7 +23,7 @@ export class GameService {
   }
   addGame(game:Game):Observable<Game>{
     console.log(game);
-    return this.http.post(this.apiUrl,game) as Observable<Game>
+    return this.http.post(this.dbUrl,game) as Observable<Game>
   }
 
 
