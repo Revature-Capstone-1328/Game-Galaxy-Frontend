@@ -33,7 +33,7 @@ export class StoreComponent implements OnInit {
   getGames(){
     console.log("Fetching games");
 
-    for (let id = 7; id < 15; id++) {
+    for (let id = 70; id < 85; id++) {
       console.log("Fetching game no " + id);
       this.getGame(String(id));
     }
