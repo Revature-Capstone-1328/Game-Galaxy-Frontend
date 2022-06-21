@@ -14,6 +14,9 @@ export class StoreComponent implements OnInit {
   name: string = "";
   date: Date= new Date();
 
+  favs: number[] = [];
+  favGames: Game[] = [];
+
   constructor(private gameService:GameService) { }
 
   ngOnInit(): void {
@@ -83,6 +86,53 @@ export class StoreComponent implements OnInit {
     });
   }
 
+  getFavorite = (id: number) => {
+    this.gameService.getFavorite(id).subscribe({
+      next: (data: Game) => {
+        this.favGames.push(data);
+      },
+      error: () => {
+        console.log("Unable to access favorites.");
+      }
+    });
+  }
+
+  addGameToFavorite = (gameId: string) => {
+    this.gameService.addGameToFavorite(gameId).subscribe({
+      next: () => {
+        console.log("Added favorite: " + gameId);
+      },
+      error: () => {
+        console.log("Unable to access favorites.");
+      }
+    });
+  }
+
+  getMyFavoriteGames = () => {
+    this.gameService.getMyFavoriteGames().subscribe({
+      next: (data: number[]) => {
+        this.favs = data;
+        for (let favId of data) {
+          this.getFavorite(favId);
+        }
+        console.log("Favorites retrieved");
+      },
+      error: () => {
+        console.log("Unable to access favorites.");
+      }
+    });
+  }
+
+  deleteGameFromFavorite = (gameId: string) => {
+    this.gameService.deleteGameFromFavorite(gameId).subscribe({
+      next: () => {
+        console.log("Deleted favorite: " + gameId);
+      },
+      error: () => {
+        console.log("Unable to access favorites.");
+      }
+    });
+  }
 
   addToCart(gameID: number){
 
