@@ -2,47 +2,61 @@
   <input class="form-control" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
     placeholder="Enter the name to search">
 </nav>
+<br>
 
 <div class="container-fluid">
   <div class="row">
+
     <div class="col-sm-6 col-lg-4 col-xl-3 mb-5" *ngFor="let game of games">
       <div class="card">
+        <br>
+        <div *ngIf="game?.thumb" class="image-container">
+          <img src="{{game.thumb}}" class="img-fluid rounded thumbnail-image">
+        </div>
+        <br>
+
         <div class="card-topper card-img-top">{{game.name}}</div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table id="test" class="table table-bordered table-hover">
-              <tbody>
-                <tr *ngIf="game?.thumb">
-                  <td class="text-center"><img src="{{game.thumb}}"></td>
-                </tr>
-                <tr *ngIf="game?.gameId">
-                  <td class="titles">Game ID</td>
-                  <td class="text-center">{{game.gameId}}</td>
-                </tr>
-                <tr *ngIf="game?.retailPrice">
-                  <td class="titles">Retail Price</td>
-                  <td class="text-center">{{game.retailPrice}}</td>
-                </tr>
-                <tr *ngIf="game?.releaseDate">
-                  <td class="titles">Release Date</td>
-                  <td class="text-center">{{game.releaseDate}}</td>
-                </tr>
-                <tr *ngIf="game?.publisher">
-                  <td class="titles">Publisher</td>
-                  <td class="text-center">{{game.publisher}}</td>
-                </tr>
-            </table>
+        <br>
+
+        <div class="product-detail-container p-2">
+          <div *ngIf="game?.retailPrice" class="price d-flex justify-content-between align-items-center">
+            <h4 class="price">Retail Price:</h4>
+            <div class="d-flex flex-column mb-3">
+              <span class="new-price">€{{game.retailPrice}}</span>
+            </div>
           </div>
 
+          <div *ngIf="game?.gameId" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Game ID:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span class="titles">{{game.gameId}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.releaseDate" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Release date:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span>{{game.releaseDate.toLocaleDateString()}}</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-body">
           <div>
             <button (click)="addToCart(game.gameId)" type="button" class="btn btn-outline-secondary">
               <i class="glyphicon glyphicon-star"></i>
               <span>Add to cart</span>
             </button>
           </div>
-
         </div>
+
       </div>
     </div>
   </div>
 </div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>

@@ -13,12 +13,16 @@ export class GameService {
 
   constructor(private http: HttpClient) { }
 
-  getGames(): Observable<any> {
-    return this.http.get(this.apiUrl) as Observable<any>;
+  getGame(gameId:string): Observable<any> {
+    return this.http.get(this.apiUrl +"games?id="+gameId) as Observable<any>;
   }
 
   getDeal(dealId:string): Observable<any> {
-    return this.http.get(this.apiUrl+dealId) as Observable<any>;
+    return this.http.get(this.apiUrl +"deals?id="+dealId) as Observable<any>;
+  }
+  addGame(game:Game):Observable<Game>{
+    console.log(game);
+    return this.http.post(this.apiUrl,game) as Observable<Game>
   }
 
   getFavorite(id: number): Observable<any> {
