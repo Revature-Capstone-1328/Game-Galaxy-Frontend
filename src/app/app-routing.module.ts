@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StoreComponent } from './components/store/store.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [{
   path: "",
@@ -13,6 +14,9 @@ const routes: Routes = [{
 }, {
   path: "login",
   component: LoginComponent
+}, {
+  path: 'wishlist',
+  component: WishlistComponent
 }, {
   path: "register",
   component: RegisterComponent
