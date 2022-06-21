@@ -22,6 +22,7 @@ export class GameService {
   getDeal(dealId:string): Observable<any> {
     return this.http.get(this.apiUrl +"deals?id="+dealId) as Observable<any>;
   }
+
   addGame(game:Game):Observable<Game>{
     console.log(game);
     return this.http.post(this.dbUrl,game) as Observable<Game>
