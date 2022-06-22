@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
@@ -25,9 +26,16 @@ export class LoginComponent implements OnInit {
     this.userService.attemptLogin(user).subscribe(
       {
         next:(authUser:User)=>{
-          this.userService.activeUser = authUser;
-          this.userService.isLogged = true;
-          this.router.navigate(["/store"]);
+          if (this.compareHash(user.password, authUser.password)) {
+            console.log("Logged in correctly");
+            this.userService.activeUser = authUser;
+            this.userService.isLogged = true;
+            this.router.navigate(["/store"]);
+          } else {
+            this.userService.activeUser = null;
+            console.log("Login credentials incorrect");
+            this.router.navigate(["/register"]);
+          }
         },
         error:()=>{
           this.userService.activeUser = null;
@@ -37,4 +45,9 @@ export class LoginComponent implements OnInit {
       }
     );    
   }
+
+compareHash(password:string, hashed:string){
+  return bcrypt.compareSync(password, hashed);
+}
+
 }
