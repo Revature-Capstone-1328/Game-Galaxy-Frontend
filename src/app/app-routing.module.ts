@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StoreComponent } from './components/store/store.component';
+import { UserInformationComponent } from './components/user-information/user-information.component';
 
 const routes: Routes = [{
   path: "",
@@ -28,6 +29,9 @@ const routes: Routes = [{
 }, {
   path: 'logout',
   component: LogoutComponent
+}, {
+  path: 'userInformation',
+  component: UserInformationComponent
 }];
 
 @NgModule({
