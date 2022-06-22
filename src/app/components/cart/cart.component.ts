@@ -45,14 +45,14 @@ export class CartComponent implements OnInit {
       let cartItem:Cart = new Cart(index,games[index],1);
       result= games.lastIndexOf(games[index]);
       console.log(result, index);
-      if ((games[index].gameId == games[result].gameId ) && (result != index)){
+      if ((games[index].gameID == games[result].gameID ) && (result != index)){
         retailPrice =  Number(cartItem.game.retailPrice);
         do{
           cartItem.quantity += 1;
           retailPrice += Number(cartItem.game.retailPrice);
           games.splice(result,1);
           result= games.lastIndexOf(games[index]);
-        }while((games[index].gameId == games[result].gameId ) && (result != index))
+        }while((games[index].gameID == games[result].gameID ) && (result != index))
         cartItem.game.retailPrice = retailPrice;
         this.totalPrice +=  retailPrice;
         this.cart[index] = cartItem;

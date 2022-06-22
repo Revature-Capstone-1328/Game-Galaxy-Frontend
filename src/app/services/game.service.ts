@@ -9,38 +9,41 @@ import { Game } from '../models/game';
 export class GameService {
 
   apiUrl: string = 'https://www.cheapshark.com/api/1.0/';
+  dbUrl: string = 'http://localhost:8087/game/';
+
   favUrl: string = 'http://localhost:8087/wishlist/game/';
 
   cartGames:Game[] = [];
 
   constructor(private http: HttpClient) { }
 
-  getGame(gameId:string): Observable<any> {
-    return this.http.get(this.apiUrl +"games?id="+gameId) as Observable<any>;
+  getGame(gameID:number): Observable<any> {
+    return this.http.get(this.apiUrl +"games?id="+gameID) as Observable<any>;
   }
 
   getDeal(dealId:string): Observable<any> {
     return this.http.get(this.apiUrl +"deals?id="+dealId) as Observable<any>;
   }
+
   addGame(game:Game):Observable<Game>{
     console.log(game);
-    return this.http.post(this.apiUrl,game) as Observable<Game>
+    return this.http.post(this.dbUrl,game) as Observable<Game>
   }
 
   getFavorite(id: number): Observable<any> {
     return this.http.get(this.apiUrl + id) as Observable<Game>;
   }
 
-  addGameToFavorite(gameId: string): Observable<unknown> {
-    return this.http.post(this.favUrl + gameId ,null, { withCredentials: true });
+  addGameToFavorite(gameID: number): Observable<unknown> {
+    return this.http.post(this.favUrl + gameID ,null, { withCredentials: true });
   }
 
   getMyFavoriteGames(): Observable<any> {
     return this.http.get(this.favUrl, { withCredentials: true }) as Observable<any>;
   }
 
-  deleteGameFromFavorite(gameId: string): Observable<unknown> {
-    return this.http.delete(this.favUrl + gameId, { withCredentials: true });
+  deleteGameFromFavorite(gameID: number): Observable<unknown> {
+    return this.http.delete(this.favUrl + gameID, { withCredentials: true });
   }
 
 }
