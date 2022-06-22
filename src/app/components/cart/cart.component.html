@@ -3,7 +3,7 @@
         <h5 class="text-light">Your Shopping Cart is empty!</h5>
         <h6 class="text-light">Please add games from Store or your Wishlist.</h6>
     </div>
-    <div  > <!--*ngIf="games.length>0"-->
+    <div *ngIf="cart.length>0">
         <div class="row">
         <h4 class="text-light">Shopping Cart</h4>
         </div>
@@ -11,29 +11,32 @@
             <table class="table table-hover table-light">
                 <thead>
                     <tr>
-                        <th colspan= 2 align="center">Game</th>
-                        <th align="right">Price</th>
+                        <th></th>
+                        <th>Game</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
                 <tbody >
-                    <tr *ngFor="let cartItem of cart" >
-                        <td><a href="" (click)="removeFromCart()">Remove</a></td>
+                    <tr *ngFor="let cartItem of cart">
+                        <td><button  (click)="removeFromCart(cartItem)" class="btn btn-light">Remove</button></td>
                         <td>
                             <img src="{{cartItem.game.thumb}}" class="img-fluid rounded thumbnail-image">
-                            <ul>
-                                <li>{{cartItem.game.gameID}}</li>
-                                <li>{{cartItem.game.name}}</li>
-                                <li>{{cartItem.game.releaseDate.toLocaleDateString()}}</li>
-                                <li>Quantity: {{cartItem.quantity}}</li>
-                            </ul>
+                            <br>
+                            <span><b>{{cartItem.game.name}}</b></span>
+                            <br>
+                            <span><b>Game ID:</b> {{cartItem.game.gameID}}</span>
+                            <br>
+                            <span><b>Release Date:</b> {{cartItem.game.releaseDate.toLocaleString().split("T")[0]}}</span>
                         </td>
+                        <td>{{cartItem.quantity}}</td>
                         <td>€{{cartItem.game.retailPrice}}</td>
                     </tr>
  
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="2" align="right">Total Price:</td>
+                        <td colspan="3" align="right">Total Price:</td>
                         <td>€{{totalPrice}}</td>
                     </tr>
                 </tfoot>

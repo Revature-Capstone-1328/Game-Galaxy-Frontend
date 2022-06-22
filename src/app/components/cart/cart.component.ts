@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   constructor(private gameService:GameService) { }
 
   ngOnInit(): void {
-    this.loadCart();
+      this.loadCart();
   }
 
 
@@ -32,53 +32,43 @@ export class CartComponent implements OnInit {
       // display it from an array from store component
     } */
 
-    let games:Game[] = this.gameService.cartGames;
-    let result:number = 0;
+    let games:Game[] = [];
+    let subGames:Game[] = [];
     let retailPrice:number = 0;
+    let cartIndex = 0;
 
-    console.log(this.gameService.cartGames.length);
+    games =  this.gameService.cartGames.slice();
+    this.cart = [];
+    //console.log(this.gameService.cartGames.length);
     console.log(games.length);
     for (let index = 0; index < games.length; index++) {
       retailPrice = 0;
-      console.log("logic begins")
-      console.log(games);
-      let cartItem:Cart = new Cart(index,games[index],1);
-      result= games.lastIndexOf(games[index]);
-      console.log(result, index);
-      if ((games[index].gameID == games[result].gameID ) && (result != index)){
-        retailPrice =  Number(cartItem.game.retailPrice);
-        do{
+      let searchItem = this.cart.find(ct => ct.game.gameID == games[index].gameID);
+      if (searchItem == undefined){
+        let cartItem:Cart = new Cart(index,games[index],1);
+        console.log("display price")
+        console.log(games[index].retailPrice);
+        retailPrice =  Number(games[index].retailPrice);
+        subGames = games.filter(gm => {return gm.gameID == games[index].gameID});
+       // console.log(subGames);
+        for (let sub = 0; sub < subGames.length-1; sub++) {
+          retailPrice +=  Number(cartItem.game.retailPrice);
           cartItem.quantity += 1;
-          retailPrice += Number(cartItem.game.retailPrice);
-          games.splice(result,1);
-          result= games.lastIndexOf(games[index]);
-        }while((games[index].gameID == games[result].gameID ) && (result != index))
+        }
         cartItem.game.retailPrice = retailPrice;
         this.totalPrice +=  retailPrice;
-        this.cart[index] = cartItem;
-        /*
-        console.log(result, index);
-        console.log(games[index].gameId);
-        console.log(games[result].gameId);
-        console.log(games);
-        console.log(games.length);
-        console.log(result,index) */
-      }else{
-        this.totalPrice +=  Number(games[index].retailPrice);
-        this.cart[index] = cartItem;
+        this.cart[cartIndex] = cartItem;
+        cartIndex++;
       }
-     
-      console.log(this.cart);
-     
-      
     }
-      
+    this.totalPrice = Number(this.totalPrice.toFixed(2));
   }
-        
   
-
-  removeFromCart(){
-    console.log()
+  removeFromCart(cartGame:Cart){
+    let index:number = this.cart.indexOf(cartGame);
+    this.totalPrice -= cartGame.game.retailPrice;
+    this.totalPrice = Number(this.totalPrice.toFixed(2));
+    this.cart.splice(index,1);
   }
 
 }
