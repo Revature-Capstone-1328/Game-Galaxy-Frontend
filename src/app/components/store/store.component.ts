@@ -114,8 +114,6 @@ export class StoreComponent implements OnInit {
 
   addToCart(game:Game){
     this.gameService.cartGames.push(game);
-    console.log(game);
-    console.log(this.gameService.cartGames);
   }
 
   addGame(game: Game){
