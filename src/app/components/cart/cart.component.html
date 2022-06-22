@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<div class="container-fluid" >
+    <div *ngIf="cart.length==0" class="row">
+        <h5 class="text-light">Your Shopping Cart is empty!</h5>
+        <h6 class="text-light">Please add games from Store or your Wishlist.</h6>
+    </div>
+    <div  > <!--*ngIf="games.length>0"-->
+        <div class="row">
+        <h4 class="text-light">Shopping Cart</h4>
+        </div>
+        <div class="row" >
+            <table class="table table-hover table-light">
+                <thead>
+                    <tr>
+                        <th colspan= 2 align="center">Game</th>
+                        <th align="right">Price</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr *ngFor="let cartItem of cart" >
+                        <td><a href="" (click)="removeFromCart()">Remove</a></td>
+                        <td>
+                            <img src="{{cartItem.game.thumb}}" class="img-fluid rounded thumbnail-image">
+                            <ul>
+                                <li>{{cartItem.game.gameId}}</li>
+                                <li>{{cartItem.game.name}}</li>
+                                <li>{{cartItem.game.releaseDate.toLocaleDateString()}}</li>
+                                <li>Quantity: {{cartItem.quantity}}</li>
+                            </ul>
+                        </td>
+                        <td>€{{cartItem.game.retailPrice}}</td>
+                    </tr>
+ 
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" align="right">Total Price:</td>
+                        <td>€{{totalPrice}}</td>
+                    </tr>
+                </tfoot>
+            </table> 
+            <div align="center">
+                <button class="btn btn-light" routerLink="/checkout" routerLinkActive="active">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+</div>

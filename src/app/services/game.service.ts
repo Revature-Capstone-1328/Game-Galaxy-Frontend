@@ -11,6 +11,8 @@ export class GameService {
   apiUrl: string = 'https://www.cheapshark.com/api/1.0/';
   favUrl: string = 'http://localhost:8087/wishlist/game/';
 
+  cartGames:Game[] = [];
+
   constructor(private http: HttpClient) { }
 
   getGame(gameId:string): Observable<any> {

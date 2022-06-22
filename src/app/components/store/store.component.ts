@@ -18,6 +18,7 @@ export class StoreComponent implements OnInit {
   favs: number[] = [];
   favGames: Game[] = [];
 
+
   constructor(private gameService:GameService) { }
 
   ngOnInit(): void {
@@ -37,7 +38,7 @@ export class StoreComponent implements OnInit {
     console.log("Fetching games");
 
     for (let id = 70; id < 85; id++) {
-      console.log("Fetching game no " + id);
+     // console.log("Fetching game no " + id);
       this.getGame(String(id));
     }
     /*
@@ -50,24 +51,24 @@ export class StoreComponent implements OnInit {
     //console.log("Fetching game");
     this.gameService.getGame(gameId).subscribe({
       next: (data: any) => {
-        console.log("Getting game "+gameId);
+        //console.log("Getting game "+gameId);
         if (data.deals.length>0){
-          console.log(data);
+          //console.log(data);
           let game = new Game("", "", 0, this.date, "", "");
           game.name = data.info.title; //name
           game.thumb = data.info.thumb; //thumb
           //this.dealId = data.deals[0].dealID; //dealID
           this.gameService.getDeal(data.deals[0].dealID).subscribe({
             next: (data: any) => {
-              console.log("Getting deal for "+gameId);
-              console.log(data);
+              //console.log("Getting deal for "+gameId);
+              //console.log(data);
               game.gameId = data.gameInfo.gameID; //gameId
               game.retailPrice = data.gameInfo.retailPrice; //retailPrice
               let date = new Date(data.gameInfo.releaseDate *1000);
               game.releaseDate = date; //releaseDate
               game.publisher = data.gameInfo.publisher; //publisher
-              console.log("Gathered game " +gameId+":");
-              console.log(game);
+            //  console.log("Gathered game " +gameId+":");
+             // console.log(game);
               this.games.push(game);
             },
             error: () => {
@@ -134,9 +135,10 @@ export class StoreComponent implements OnInit {
     });
   }
 
-  addToCart(gameId: string){
-
+  addToCart(game:Game){
+    this.gameService.cartGames.push(game);
   }
+
   addGame(game: Game){
 
   
