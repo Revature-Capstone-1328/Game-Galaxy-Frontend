@@ -35,7 +35,7 @@ export class StoreComponent implements OnInit {
   getGames(){
     console.log("Fetching games");
 
-    for (let id = 1; id < 50; id++) {
+    for (let id = 950; id < 1000; id++) {
       console.log("Fetching game no " + id);
       this.getGameFromAPI(id);
     }
