@@ -44,9 +44,15 @@
 
         <div class="card-body">
           <div>
-            <button (click)="addToCart(game.gameID)" type="button" class="btn btn-outline-secondary">
+            <button (click)="addGameToFavorite(game.gameID)" type="button" class="btn btn-outline-secondary">
               <i class="glyphicon glyphicon-star"></i>
-              <span>Add to cart</span>
+              <span class="material-icons md-star" title="wishlist">Add to wishlist</span>
+            </button>
+            <br>
+            <br>
+            <button (click)="addToCart(game)" type="button" class="btn btn-outline-secondary">
+              <i class="glyphicon glyphicon-star"></i>
+              <span class="material-icons md-add_shopping_cart" title="cart">Add to cart</span>
             </button>
           </div>
         </div>

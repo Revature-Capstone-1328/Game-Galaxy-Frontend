@@ -13,6 +13,8 @@ export class GameService {
 
   favUrl: string = 'http://localhost:8087/wishlist/game/';
 
+  cartGames:Game[] = [];
+
   constructor(private http: HttpClient) { }
 
   getGame(gameID:number): Observable<any> {
@@ -32,16 +34,16 @@ export class GameService {
     return this.http.get(this.apiUrl + id) as Observable<Game>;
   }
 
-  addGameToFavorite(gameId: string): Observable<unknown> {
-    return this.http.post(this.favUrl + gameId ,null, { withCredentials: true });
+  addGameToFavorite(gameID: number): Observable<unknown> {
+    return this.http.post(this.favUrl + gameID ,null, { withCredentials: true });
   }
 
   getMyFavoriteGames(): Observable<any> {
     return this.http.get(this.favUrl, { withCredentials: true }) as Observable<any>;
   }
 
-  deleteGameFromFavorite(gameId: string): Observable<unknown> {
-    return this.http.delete(this.favUrl + gameId, { withCredentials: true });
+  deleteGameFromFavorite(gameID: number): Observable<unknown> {
+    return this.http.delete(this.favUrl + gameID, { withCredentials: true });
   }
 
 }
