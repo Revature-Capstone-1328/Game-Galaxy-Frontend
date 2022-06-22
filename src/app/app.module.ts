@@ -14,6 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserInformationComponent } from './components/user-information/user-inf
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

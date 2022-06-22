@@ -5,9 +5,10 @@
 <br>
 
 <div class="container-fluid">
+  <pagination-controls id="basicPaginate" (pageChange)="pageChanged($event)"></pagination-controls>
   <div class="row">
 
-    <div class="col-sm-6 col-lg-4 col-xl-3 mb-5" *ngFor="let game of games">
+    <div class="col-sm-6 col-lg-4 col-xl-3 mb-5" *ngFor="let game of games | paginate: config">
       <div class="card">
         <br>
         <div *ngIf="game?.thumb" class="image-container">
@@ -73,6 +74,7 @@
 
       </div>
     </div>
+    <pagination-controls id="basicPaginate" (pageChange)="pageChanged($event)"></pagination-controls>
   </div>
 </div>
 

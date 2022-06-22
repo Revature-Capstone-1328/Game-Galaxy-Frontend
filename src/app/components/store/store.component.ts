@@ -14,9 +14,17 @@ export class StoreComponent implements OnInit {
   games: Game[] = [];
   name: string = "";
   date: Date= new Date();
+  config: any;
 
 
-  constructor(private gameService:GameService) { }
+  constructor(private gameService:GameService) {
+    this.config = {
+      id: 'basicPaginate',
+      itemsPerPage: 25,
+      currentPage: 1,
+      totalItems: this.games.length
+    };
+   }
 
   ngOnInit(): void {
     //this.getGames(); //This only gets called once to fetch from API into database
@@ -129,6 +137,10 @@ export class StoreComponent implements OnInit {
       }
 
     })
+  }
+
+  pageChanged(event:any) {
+    this.config.currentPage = event;
   }
 
 }
