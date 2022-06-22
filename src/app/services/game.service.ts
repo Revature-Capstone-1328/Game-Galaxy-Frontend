@@ -13,6 +13,8 @@ export class GameService {
 
   favUrl: string = 'http://localhost:8087/wishlist/game/';
 
+  cartGames:Game[] = [];
+
   constructor(private http: HttpClient) { }
 
   getGameFromAPI(gameID:number): Observable<any> {

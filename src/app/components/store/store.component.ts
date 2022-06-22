@@ -14,6 +14,7 @@ export class StoreComponent implements OnInit {
   name: string = "";
   date: Date= new Date();
 
+
   constructor(private gameService:GameService) { }
 
   ngOnInit(): void {
@@ -111,8 +112,8 @@ export class StoreComponent implements OnInit {
     });
   }
 
-  addToCart(gameID: number){
-
+  addToCart(game:Game){
+    this.gameService.cartGames.push(game);
   }
 
   addGame(game: Game){
