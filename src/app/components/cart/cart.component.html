@@ -28,9 +28,11 @@
                             <span><b>Game ID:</b> {{cartItem.game.gameID}}</span>
                             <br>
                             <span><b>Release Date:</b> {{cartItem.game.releaseDate.toLocaleString().split("T")[0]}}</span>
+                            <br>
+                            <span><b>Retail Price:</b> €{{cartItem.game.retailPrice}}</span>
                         </td>
                         <td>{{cartItem.quantity}}</td>
-                        <td>€{{cartItem.game.retailPrice}}</td>
+                        <td>€{{cartItem.price}}</td>
                     </tr>
  
                 </tbody>
