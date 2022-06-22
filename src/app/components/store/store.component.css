@@ -13,7 +13,7 @@ body {
 
 .image-thumb{
   text-align: center;
-  width:80px;
+  width:90px;
   height: auto;
 }
 
@@ -31,7 +31,7 @@ body {
   background-color: rgb(199, 233, 255);
   border: none;
   border-radius: 25px;
-  width: 300px; /*190*/
+  width: 320px; /*190*/
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

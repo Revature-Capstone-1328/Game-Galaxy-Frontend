@@ -33,6 +33,20 @@
             </div>
           </div>
 
+          <div *ngIf="game?.steamRatingPercent" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Steam Rating Score:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span class="titles">{{game.steamRatingPercent}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.steamRatingText" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Rating:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span class="titles">{{game.steamRatingText}}</span>
+            </div>
+          </div>
+
           <div *ngIf="game?.releaseDate" class="d-flex justify-content-between align-items-center">
             <h5 class="product-info">Release date:</h5>
             <div class="d-flex flex-column mb-2">
