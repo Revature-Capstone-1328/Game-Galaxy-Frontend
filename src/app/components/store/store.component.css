@@ -28,10 +28,12 @@ body {
 .card {
 
   /*background-color: #fff;*/
-  background-color: rgb(199, 233, 255);
+  background-color: rgb(235, 240, 250);
   border: none;
   border-radius: 25px;
   width: 320px; /*190*/
+  height: 570px;
+  padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -44,8 +46,8 @@ body {
 .thumbnail-image {
   border-radius: 10px !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 250px;
-  height: auto;
+  width: 280px;
+  height: 120px;
 }
 
 
@@ -69,7 +71,6 @@ body {
 .product-info {
   font-size: 15px;
   font-weight: bold;
-  width: 75%;
 }
 
 .price{
@@ -87,4 +88,18 @@ body {
 
 #basicPaginate {
   color: #eee !important;
+}
+
+.titles{
+  font-size: 15px;
+}
+
+.btn-primary{
+  background-color: #333;
+  border: 1px solid rgb(0, 0, 0);
+  text-align: center;
+  padding: 3px 10px 10px 10px;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }

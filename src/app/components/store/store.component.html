@@ -10,14 +10,14 @@
 
     <div class="col-sm-6 col-lg-4 col-xl-3 mb-5" *ngFor="let game of games | paginate: config">
       <div class="card">
-        <br>
         <div *ngIf="game?.thumb" class="image-container">
           <img src="{{game.thumb}}" class="img-fluid rounded thumbnail-image">
         </div>
         <br>
 
+
         <div class="card-topper card-img-top">{{game.name}}</div>
-        <br>
+
 
         <div class="product-detail-container p-2">
           <div *ngIf="game?.retailPrice" class="price d-flex justify-content-between align-items-center">
@@ -35,7 +35,7 @@
           </div>
 
           <div *ngIf="game?.steamRatingPercent" class="d-flex justify-content-between align-items-center">
-            <h5 class="product-info">Steam Rating Score:</h5>
+          <h5 class="product-info">Steam Rating Score:</h5>
             <div class="d-flex flex-column mb-2">
               <span class="titles">{{game.steamRatingPercent}}</span>
             </div>
@@ -51,7 +51,14 @@
           <div *ngIf="game?.releaseDate" class="d-flex justify-content-between align-items-center">
             <h5 class="product-info">Release date:</h5>
             <div class="d-flex flex-column mb-2">
-              <span>{{game.releaseDate.toLocaleString().split("T")[0]}}</span>
+              <span class="titles">{{game.releaseDate.toLocaleString().split("T")[0]}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.metacriticLink" class="d-flex justify-content-between align-items-center">
+
+            <div class="d-flex flex-column mb-2">
+              <a href="https://www.metacritic.com/{{game.metacriticLink}}" target="_blank">Go to Metacritic Review</a>
             </div>
           </div>
 
@@ -59,13 +66,12 @@
 
         <div class="card-body">
           <div>
-            <button (click)="addGameToFavorite(game.gameID)" type="button" class="btn btn-outline-secondary">
+            <button (click)="addGameToFavorite(game.gameID)" type="button" class="btn btn-primary">
               <i class="glyphicon glyphicon-star"></i>
               <span class="material-icons md-star" title="wishlist">Add to wishlist</span>
             </button>
-            <br>
-            <br>
-            <button (click)="addToCart(game)" type="button" class="btn btn-outline-secondary">
+            <br><br>
+            <button (click)="addToCart(game)" type="button" class="btn btn btn-primary">
               <i class="glyphicon glyphicon-star"></i>
               <span class="material-icons md-add_shopping_cart" title="cart">Add to cart</span>
             </button>

@@ -20,7 +20,7 @@ export class StoreComponent implements OnInit {
   constructor(private gameService:GameService) {
     this.config = {
       id: 'basicPaginate',
-      itemsPerPage: 25,
+      itemsPerPage: 24,
       currentPage: 1,
       totalItems: this.games.length
     };
