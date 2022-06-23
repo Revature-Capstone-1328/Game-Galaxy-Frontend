@@ -5,13 +5,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Bcrypt setup info
 
 Run the following CLI commands:
+
 npm install bcryptjs
+
 npm install @types/bcryptjs
 
 update your package.json with the following code between "dependencies" and "devDependencies"
 "browser": {    
     "crypto": false    
 },
+
+## Pagination setup
+
+Run the following CLI command:
+
+npm install ngx-pagination
 
 
 
