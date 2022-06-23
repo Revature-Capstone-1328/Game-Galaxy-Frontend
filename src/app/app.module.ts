@@ -12,7 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { UserInformationComponent } from './components/user-information/user-inf
     CheckoutComponent,
     RegisterComponent,
     LogoutComponent,
+    WishlistComponent,
     UserInformationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
