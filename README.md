@@ -10,7 +10,8 @@ npm install bcryptjs
 
 npm install @types/bcryptjs
 
-update your package.json with the following code between "dependencies" and "devDependencies"
+update your package.json with the following code between "dependencies" and "devDependencies":
+
 "browser": {    
     "crypto": false    
 },
