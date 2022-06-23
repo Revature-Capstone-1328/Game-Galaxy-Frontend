@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import * as bcrypt from 'bcryptjs';
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class UserService {
     this.isLogged = false;
   }
 
-  update(eMail:string):Observable<unknown>|null{
+  updateEmail(eMail:string):Observable<unknown>|null{
     if(this.activeUser){
       this.activeUser.eMail = eMail;
       return this.http.put(this.url,this.activeUser,{withCredentials:true});
@@ -37,4 +38,22 @@ export class UserService {
     console.log("Updating went wrong!");
     return null;
   }
+
+  updatePwd(pwd:string):Observable<unknown>|null{
+    if(this.activeUser){  
+      console.log(this.activeUser.password);    
+      this.activeUser.password = this.generateHash(pwd);
+      console.log(this.activeUser.password);
+      return this.http.put(this.url,this.activeUser,{withCredentials:true});
+    }
+    console.log("Updating went wrong!");
+    return null;
+  }
+
+  generateHash(password:string) {
+    const salt = bcrypt.genSaltSync(12);
+    const hash = bcrypt.hashSync(password, salt);
+    return hash;
+ }
+
 }
