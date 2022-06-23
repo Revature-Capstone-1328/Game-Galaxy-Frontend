@@ -65,4 +65,8 @@ export class WishlistComponent implements OnInit {
     });
   }
 
+  addToCart(gameID: number){
+
+  }
+
 }

@@ -11,7 +11,7 @@ export class GameService {
   apiUrl: string = 'https://www.cheapshark.com/api/1.0/';
   dbUrl: string = 'http://localhost:8087/game/';
 
-  favUrl: string = 'http://localhost:8087/wishlist/game/';
+  favUrl: string = 'http://localhost:8087/wishlist/';
 
   cartGames:Game[] = [];
 
