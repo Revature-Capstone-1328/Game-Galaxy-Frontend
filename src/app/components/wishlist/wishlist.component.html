@@ -1,3 +1,91 @@
+<div id="games">
+
+  <div class="row">
+
+    <div class="col-sm-6 col-lg-4 col-xl-3 mb-5" *ngFor="let game of favGames">
+      <div class="card">
+        <div *ngIf="game?.thumb" class="image-container">
+          <img src="{{game.thumb}}" class="img-fluid rounded thumbnail-image">
+        </div>
+        <br>
+
+
+        <div class="card-topper card-img-top">{{game.name}}</div>
+
+
+        <div class="product-detail-container p-2">
+          <div *ngIf="game?.retailPrice" class="price d-flex justify-content-between align-items-center">
+            <h4 class="price">Retail Price:</h4>
+            <div class="d-flex flex-column mb-3">
+              <span class="new-price">€{{game.retailPrice}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.gameID" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Game ID:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span class="titles">{{game.gameID}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.steamRatingPercent" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Steam Rating Score:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span class="titles">{{game.steamRatingPercent}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.steamRatingText" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Rating:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span class="titles">{{game.steamRatingText}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.releaseDate" class="d-flex justify-content-between align-items-center">
+            <h5 class="product-info">Release date:</h5>
+            <div class="d-flex flex-column mb-2">
+              <span class="titles">{{game.releaseDate.toLocaleString().split("T")[0]}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="game?.metacriticLink" class="d-flex justify-content-between align-items-center">
+
+            <div class="d-flex flex-column mb-2">
+              <a href="https://www.metacritic.com/{{game.metacriticLink}}" target="_blank">Go to Metacritic Review</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-body">
+          <div>
+            <button (click)="addGameToFavorite(game.gameID)" type="button" class="btn btn-primary btn-sm">
+              <i class="glyphicon glyphicon-star"></i>
+              <span class="material-icons md-star" title="wishlist">Remove from wishlist</span>
+            </button>
+            <br><br>
+            <button (click)="addToCart(game)" type="button" class="btn btn btn-primary btn-sm">
+              <i class="glyphicon glyphicon-star"></i>
+              <span class="material-icons md-add_shopping_cart" title="cart">Add to cart</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!---
 <div class="container-fluid">
   <div class="row">
 
@@ -55,3 +143,4 @@
     </div>
   </div>
 </div>
+-->

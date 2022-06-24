@@ -82,8 +82,8 @@ export class WishlistComponent implements OnInit {
     }
   }
 
-  addToCart(gameID: number){
-
+  addToCart(game: Game) {
+    this.gameService.cartGames.push(game);
   }
 
 }
