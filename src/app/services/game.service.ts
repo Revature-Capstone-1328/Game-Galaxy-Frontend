@@ -39,7 +39,7 @@ export class GameService {
   }
 
   getFavorite(id: number): Observable<any> {
-    return this.http.get(this.apiUrl + id) as Observable<Game>;
+    return this.http.get(this.favUrl + id) as Observable<Game>;
   }
 
   addGameToFavorite(gameID: number): Observable<unknown> {

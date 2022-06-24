@@ -9,7 +9,7 @@ body{
 body.dark-theme{
   --text-color: rgb(177, 178, 192);
   background-color: rgba(0, 0, 0, 0.856); 
-  --btn-bg-color: rgba(71, 71, 73, 0.507);
+  --btn-bg-color: rgba(106, 106, 109, 0.74);
 }
 
 button{

@@ -10,7 +10,7 @@ import { GameService } from 'src/app/services/game.service';
 export class WishlistComponent implements OnInit {
 
   displayOnlyFavorites: boolean = false;
-  favs: number[] = [];
+  favs: string[] = [];
   favGames: Game[] = [];
 
   constructor(private gameService: GameService) { }
@@ -19,10 +19,13 @@ export class WishlistComponent implements OnInit {
    this.getMyFavoriteGames();
   }
 
-  getFavorite = (id: number) => {
-    this.gameService.getFavorite(id).subscribe({
+  getFavorite = (gameID: number) => {
+    console.log("s"+ gameID);
+    this.gameService.getFavorite(gameID).subscribe({
       next: (data: Game) => {
+        console.log("coś");
         this.favGames.push(data);
+        console.log("uhduhs");
       },
       error: () => {
         console.log("Unable to access favorites.");
@@ -43,11 +46,13 @@ export class WishlistComponent implements OnInit {
 
   getMyFavoriteGames = () => {
     this.gameService.getMyFavoriteGames().subscribe({
-      next: (data: number[]) => {
-        this.favs = data;
-        for (let favId of data) {
-          this.getFavorite(favId);
-        }
+      next: (data: Game[]) => {
+        this.favGames = data;
+        console.log(data);
+        // for (let favId of data) {
+        //   console.log(favId);
+        //   this.(getFavoriteNumber(favId));
+        // }
         console.log("Favorites retrieved");
       },
       error: () => {
