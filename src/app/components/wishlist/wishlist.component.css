@@ -1,6 +1,11 @@
 body {
 
   background-color: #eee;
+
+}
+
+h4{
+  color:rgba(124, 132, 156, 0.568);
 }
 
 .card-img-top {
