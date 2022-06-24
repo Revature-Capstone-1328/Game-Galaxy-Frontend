@@ -1,5 +1,4 @@
-<h2 *ngIf="!username">You need to login to view this page!</h2>
-<div *ngIf="username">
+<!-- <div *ngIf="username">
   <table>
     <thead>
       <th>Username</th>
@@ -33,5 +32,61 @@
       <button class="btn btn-primary" (click)="updatePwd()">Reset Password</button>
       
     </div>
-</div>
+</div> -->
 
+<h2 *ngIf="!username">You need to login to view this page!</h2>
+<div *ngIf="username">
+
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5" id="userinfocard">
+          <div class="form-data">
+            <div>
+              <span>Logged in user: {{username}}</span>
+            </div>
+            <div>
+              <span>E-mail address: {{eMail}}</span>
+            </div>
+            <div class="mb-3" *ngIf="!changeUserData"> <button class="btn btn-dark w-100" (click)="updateUserDetails()">Edit user details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5" *ngIf="changeUserData">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5" id="changeemailcard">
+          <div class="form-data">
+            <div class="forms-inputs mb-4"> <span>New e-mail address:</span> <input autocomplete="off" type="text" [(ngModel)]="newEmail">
+            </div>
+            <div class="mb-3"> <button class="btn btn-dark w-100" (click)="updateEmail()">Update e-mail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5" *ngIf="changeUserData">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5" id="changepwdcard">
+          <div class="form-data">
+            <div class="forms-inputs mb-4"> <span>New Password:</span> <input autocomplete="off" type="text" [(ngModel)]="newPassword">
+            </div>
+            <div class="forms-inputs mb-4"> <span>Confirm Password:</span> <input autocomplete="off" type="password" [(ngModel)]="confirmPassword">
+            </div>
+            <label *ngIf="unmatchedPassword" style="color: crimson;">Passwords do not match.</label>
+            <div class="mb-3"> <button class="btn btn-dark w-100" (click)="updatePwd()">Update password</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
