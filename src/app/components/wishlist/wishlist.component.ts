@@ -9,12 +9,14 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class WishlistComponent implements OnInit {
 
+  displayOnlyFavorites: boolean = false;
   favs: number[] = [];
   favGames: Game[] = [];
 
   constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
+   this.getMyFavoriteGames();
   }
 
   getFavorite = (id: number) => {
@@ -63,6 +65,16 @@ export class WishlistComponent implements OnInit {
         console.log("Unable to access favorites.");
       }
     });
+  }
+
+  toggleFavorites() {
+    if (this.displayOnlyFavorites) {
+      this.displayOnlyFavorites = false;
+    } else {
+      this.getMyFavoriteGames();
+      console.log("Retrieving favorites...");
+      this.displayOnlyFavorites = true;
+    }
   }
 
   addToCart(gameID: number){
