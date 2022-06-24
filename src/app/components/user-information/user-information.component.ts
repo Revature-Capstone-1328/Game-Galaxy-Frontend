@@ -9,20 +9,45 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserInformationComponent implements OnInit {
 
-  newEmail:string="";
   username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
   eMail?:string = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
+  newEmail:string="";
+  newPassword:string="";
+  confirmPassword:string="";
+  unmatchedPassword:boolean = false;
+
 
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
   }
 
-  update(){
+  updateEmail(){
     if(this.newEmail){
-      this.userService.update(this.newEmail)?.subscribe({
+      this.userService.updateEmail(this.newEmail)?.subscribe({
         next:()=>{
           console.log("Email changed.");
+          this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
+        },
+        error:()=>{
+          console.log("Something went wrong changing the Email."); 
+        }
+      })
+    }
+  }
+
+  updatePwd(){
+    if (this.newPassword !== this.confirmPassword) {
+      this.unmatchedPassword = true;
+      console.log("Passwords don't match.")
+    }
+    if(this.newPassword === this.confirmPassword){
+      this.unmatchedPassword = false;
+      console.log("Changing password.");
+      this.userService.updatePwd(this.newPassword)?.subscribe({
+        next:()=>{
+          console.log("Password changed.");
+          this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
           console.log("Something went wrong changing the Email."); 

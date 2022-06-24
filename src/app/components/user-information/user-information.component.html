@@ -13,13 +13,25 @@
 </div>
 <div *ngIf="username" class="register">
     <div class="form">
-      <h2 class="title">Update Information</h2>
+      <h2 class="title">Update User Information</h2>
       <form class="reister-form">
         <div class="form-group">
-          <label for="registerEmail">Changing E-mail:</label>
-          <input type="text" id="registerEmail" name="registerEmail" class="form-control" [(ngModel)]="newEmail">
+          <label for="changeEmail">Change E-mail:</label>
+          <input type="text" id="changeEmail" name="changeEmail" class="form-control" [(ngModel)]="newEmail">
         </div>
       </form>
-      <button class="btn btn-primary" (click)="update()">Update E-Mail Address</button>
+      <button class="btn btn-primary" (click)="updateEmail()">Update E-Mail Address</button>
+      <form class="reister-form">
+        <div class="form-group">
+          <label for="changePwd">New Password:</label>
+          <input type="password" id="changePwd" name="changePwd" class="form-control" [(ngModel)]="newPassword">
+          <label for="confirmPwd">Confirm Password:</label>
+          <input type="password" id="confirmPwd" name="confirmPwd" class="form-control" [(ngModel)]="confirmPassword">
+          <label *ngIf="unmatchedPassword" style="color: crimson;">Passwords do not match. Please provide matching passwords.</label>
+        </div>
+      </form>
+      <button class="btn btn-primary" (click)="updatePwd()">Reset Password</button>
+      
     </div>
-  </div>
+</div>
+
