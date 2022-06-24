@@ -1,16 +1,16 @@
-<div class="login">
-    <div class="form">
-      <h2 class="title">Please Login:</h2>
-      <form class="login-form">
-        <div class="form-group">
-          <label for="loginUsername">Username:</label>
-          <input type="text" id="loginUsername" name="loginUsername" class="form-control" [(ngModel)]="username">
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="card px-5 py-5" id="form1">
+        <div class="form-data">
+          <div class="forms-inputs mb-4"> <span>Username:</span> <input autocomplete="off" type="text" [(ngModel)]="username">
+          </div>
+          <div class="forms-inputs mb-4"> <span>Password:</span> <input autocomplete="off" type="password" [(ngModel)]="password">
+          </div>
+          <div class="mb-3"> <button class="btn btn-dark w-100" (click)="login()">Login</button>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="loginPassword">Password:</label>
-          <input type="password" id="loginPassword" name="loginPassword" class="form-control" [(ngModel)]="password">
-        </div>
-      </form>
-      <button class="btn btn-primary" (click)="login()">Login</button>
+      </div>
     </div>
   </div>
+</div>
