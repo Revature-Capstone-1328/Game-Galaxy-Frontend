@@ -1,8 +1,9 @@
 <div id="games">
   <!-- <h1>You need to be logged in to see wishlist!</h1> -->
   <div *ngIf="favGames.length==0" class="row">
-    <h4>The wishlist is empty!</h4></div>
-  <div *ngIf="favGames.length>0" class="row">
+    <h4>The wishlist is empty!</h4>
+    <h5>Try to add game to the wishlist or login to see your wishlist!</h5></div>
+    <div *ngIf="favGames.length>0" class="row">
     <div class="col-sm-6 col-lg-4 col-xl-3 mb-5" *ngFor="let game of favGames">
       <div class="card">
         <div *ngIf="game?.thumb" class="image-container">
