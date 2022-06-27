@@ -1,39 +1,3 @@
-<!-- <div *ngIf="username">
-  <table>
-    <thead>
-      <th>Username</th>
-      <th>E-Mail</th>
-    </thead>
-    <tbody>
-      <td>{{username}}</td>
-      <td>{{eMail}}</td>
-    </tbody>
-  </table>
-</div>
-<div *ngIf="username" class="register">
-    <div class="form">
-      <h2 class="title">Update User Information</h2>
-      <form class="reister-form">
-        <div class="form-group">
-          <label for="changeEmail">Change E-mail:</label>
-          <input type="text" id="changeEmail" name="changeEmail" class="form-control" [(ngModel)]="newEmail">
-        </div>
-      </form>
-      <button class="btn btn-primary" (click)="updateEmail()">Update E-Mail Address</button>
-      <form class="reister-form">
-        <div class="form-group">
-          <label for="changePwd">New Password:</label>
-          <input type="password" id="changePwd" name="changePwd" class="form-control" [(ngModel)]="newPassword">
-          <label for="confirmPwd">Confirm Password:</label>
-          <input type="password" id="confirmPwd" name="confirmPwd" class="form-control" [(ngModel)]="confirmPassword">
-          <label *ngIf="unmatchedPassword" style="color: crimson;">Passwords do not match. Please provide matching passwords.</label>
-        </div>
-      </form>
-      <button class="btn btn-primary" (click)="updatePwd()">Reset Password</button>
-      
-    </div>
-</div> -->
-
 <h2 *ngIf="!username">You need to login to view this page!</h2>
 <div *ngIf="username">
 
@@ -48,7 +12,7 @@
             <div>
               <span>E-mail address: {{eMail}}</span>
             </div>
-            <div class="mb-3" *ngIf="!changeUserData"> <button class="btn btn-dark w-100" (click)="updateUserDetails()">Edit user details</button>
+            <div class="mb-3" *ngIf="!optionsVisibility"> <button class="btn btn-dark w-100" (click)="updateOptionsVisibility()">Edit user details</button>
             </div>
           </div>
         </div>
@@ -56,7 +20,7 @@
     </div>
   </div>
 
-  <div class="container mt-5" *ngIf="changeUserData">
+  <div class="container mt-5" *ngIf="optionsVisibility">
     <div class="row d-flex justify-content-center">
       <div class="col-md-6">
         <div class="card px-5 py-5" id="changeemailcard">
@@ -71,7 +35,7 @@
     </div>
   </div>
 
-  <div class="container mt-5" *ngIf="changeUserData">
+  <div class="container mt-5" *ngIf="optionsVisibility">
     <div class="row d-flex justify-content-center">
       <div class="col-md-6">
         <div class="card px-5 py-5" id="changepwdcard">

@@ -15,7 +15,7 @@ export class UserInformationComponent implements OnInit {
   newPassword:string="";
   confirmPassword:string="";
   unmatchedPassword:boolean = false;
-  changeUserData:boolean = false;
+  optionsVisibility:boolean = false;
 
 
   constructor(private userService:UserService) { }
@@ -57,8 +57,13 @@ export class UserInformationComponent implements OnInit {
     }
   }
 
-  updateUserDetails(){
-    this.changeUserData = true;
+  updateOptionsVisibility(){
+    this.optionsVisibility = true;
+  }
+
+  updateUserInfo(){
+    this.username = this.userService.activeUser?this.userService.activeUser.username:"";
+    this.eMail = this.userService.activeUser?this.userService.activeUser.eMail:"";
   }
 
 }
