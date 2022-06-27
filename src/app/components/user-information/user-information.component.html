@@ -53,4 +53,27 @@
     </div>
   </div>
 
+  <div class="form">
+    <h2 class="title">View Order history</h2>
+    <button class="btn btn-primary" (click)="viewHistory()">View Order history</button>
+  </div>
+
+  <div class="row" *ngIf="orders.length>0">
+    <table *ngFor="let order of orders">
+        <thead>
+          <tr>
+            <th>Order Id:{{order.orderId}} <br>
+            Order Date:{{order.orderDate}}</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let game of order.games">
+              <td>{{game.gameID}} <br>
+              {{game.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+  </div>
+
 </div>

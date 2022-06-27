@@ -43,6 +43,8 @@ export class CheckoutComponent implements OnInit {
     let now = new Date();
     let order:Order = new Order(0,now,orderGames);
 
+      console.log(now);
+      console.log(order);
       this.cartService.saveOrder(order).subscribe({
         next:()=>{
           console.log("Order saved.");
