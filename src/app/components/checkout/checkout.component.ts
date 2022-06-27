@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from 'src/app/models/game';
+import { UserService } from 'src/app/services/user.service';
+import { GameService } from 'src/app/services/game.service';
+import { CartService } from 'src/app/services/cart.service';
 import { Cart } from 'src/app/models/cart';
 import { Order } from 'src/app/models/order';
-import { Game } from 'src/app/models/game';
-import { CartService } from 'src/app/services/cart.service';
-import { UserService } from 'src/app/services/user.service';
-import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-checkout',
@@ -15,42 +15,66 @@ export class CheckoutComponent implements OnInit {
 
   username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
   chCart:Cart[] = [];
+  totalPrice:number = 0;
+  message:string = "";
+  disable:boolean = false;
 
-  constructor(private userService:UserService, private cartService:CartService) { }
+  constructor(private userService:UserService, private cartService:CartService,private gameService:GameService,) { }
 
   ngOnInit(): void {
     this.displayCart();
   }
 
   displayCart(){
-    console.log(this.cartService.checkoutCart);
+ //   console.log(this.cartService.checkoutCart);
     this.chCart = this.cartService.checkoutCart;
+    for (let index = 0; index < this.chCart.length; index++) 
+        this.totalPrice +=Number(this.chCart[index].game.retailPrice);
+    this.totalPrice = Number(this.totalPrice.toFixed(2));
+
   }
 
   saveOrder(){
     console.log("saving order");
+    this.message="";
     
-    let orderGames:Game[] = [];
-    let gameIndex=0;
-    for(let index=0; index<this.chCart.length; index++){
-      for(let num=0; num<this.chCart[index].quantity; num++){
-        orderGames[gameIndex++] = this.chCart[index].game;
-      }
-    }
-    
-    console.log(orderGames);
-    
-    let now = new Date();
-    let order:Order = new Order(0,orderGames,now);
-      console.log(order);
-      this.cartService.saveOrder(order).subscribe({
-        next:()=>{
-          console.log("Order saved.");
-        },
-        error:()=>{
-          console.log("Couldn't save order."); 
+    // save the order to DB only if the user is logged in.
+    if (this.username != "" && this.chCart.length > 0 ){
+        let orderGames:Game[] = [];
+        let gameIndex=0;
+        for(let index=0; index<this.chCart.length; index++){
+          for(let num=0; num<this.chCart[index].quantity; num++){
+            orderGames[gameIndex++] = this.chCart[index].game;
+          }
         }
-      })
+        
+        //console.log(orderGames);
+        
+        let now = new Date();
+        let order:Order = new Order(0,orderGames,now);
+        console.log(order)
+          this.cartService.saveOrder(order).subscribe({
+            next:()=>{
+              console.log("Order saved.");
+              this.message = "Thank you for placing the Order"
+             // this.disable = true;
+              this.cartService.checkoutCart = [];
+              this.gameService.cartGames = [];
+              this.chCart = []; 
+              this.totalPrice = 0;
+            },
+            error:()=>{
+              console.log("Couldn't save order."); 
+            }
+          })
+      }else{
+      this.message = "Thank you for placing the Order"
+      this.cartService.checkoutCart = [];
+      this.gameService.cartGames = [];
+      this.chCart = []; 
+      this.totalPrice = 0;
+    }
   }
 
 }
+

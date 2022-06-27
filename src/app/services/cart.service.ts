@@ -35,8 +35,7 @@ export class CartService {
 
 
   getOrderHistory():Observable<any>{
-    console.log(this.cartUrl);
-    return this.http.get(this.cartUrl+"order",{withCredentials:true});
+    return this.http.get(this.cartUrl,{withCredentials:true}) as Observable<any>;
   }
 
   saveOrder(order:Order):Observable<any>{
