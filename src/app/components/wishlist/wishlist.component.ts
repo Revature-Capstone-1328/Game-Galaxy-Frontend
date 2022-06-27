@@ -65,6 +65,8 @@ export class WishlistComponent implements OnInit {
     this.gameService.deleteGameFromFavorite(gameID).subscribe({
       next: () => {
         console.log("Deleted favorite: " + gameID);
+        this.toggleFavorites();
+        this.toggleFavorites();
       },
       error: () => {
         console.log("Unable to access favorites.");
