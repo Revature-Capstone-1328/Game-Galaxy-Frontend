@@ -1,21 +1,18 @@
-<div class="register">
-    <div class="form">
-      <h2 class="title">Please register:</h2>
-      <form class="reister-form">
-        <div class="form-group">
-          <label for="registerUsername">Username:</label>
-          <input type="text" id="registerUsername" name="registerUsername" class="form-control" [(ngModel)]="newUsername">
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5" id="form1">
+          <div class="form-data">
+            <div class="forms-inputs mb-4"> <span>New user's username:</span> <input autocomplete="off" type="text" [(ngModel)]="newUsername">
+            </div>
+            <div class="forms-inputs mb-4"> <span>New user's password:</span> <input autocomplete="off" type="password" [(ngModel)]="newPassword">
+            </div>
+            <div class="forms-inputs mb-4"> <span>New user's e-mail:</span> <input autocomplete="off" type="text" [(ngModel)]="newEmail">
+            </div>
+            <div class="mb-3"> <button class="btn btn-dark w-100" (click)="register()">Register</button>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="registerPassword">Password:</label>
-          <input type="password" id="registerPassword" name="registerPassword" class="form-control"
-            [(ngModel)]="newPassword">
-        </div>
-        <div class="form-group">
-          <label for="registerEmail">E-mail:</label>
-          <input type="text" id="registerEmail" name="registerEmail" class="form-control" [(ngModel)]="newEmail">
-        </div>
-      </form>
-      <button class="btn btn-primary" (click)="register()">Register</button>
+      </div>
     </div>
   </div>
