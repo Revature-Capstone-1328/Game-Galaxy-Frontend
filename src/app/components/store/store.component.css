@@ -3,6 +3,11 @@ body {
   background-color: #eee;
 }
 
+#search-criteria {
+  color: rgba(124, 132, 156, 0.568) !important;
+  text-align: center !important;
+}
+
 .card-img-top{
   text-align: center;
   font-size: larger;
@@ -70,6 +75,15 @@ body {
 
 #basicPaginate {
   color: #eee !important;
+}
+
+
+:host /deep/ .ngx-pagination {
+  color:black;
+}
+
+:host /deep/ .ngx-pagination .dark-theme {
+  color:white;
 }
 
 .titles{
