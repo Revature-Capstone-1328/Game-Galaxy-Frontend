@@ -3,13 +3,9 @@ body {
   background-color: #eee;
 }
 
-h5 {
-  color:black;
+#search-criteria {
+  color: rgba(124, 132, 156, 0.568) !important;
   text-align: center !important;
-}
-h5.dark-theme {
-  --color: rgba(124, 132, 156, 0.568) !important;
-  --text-align: center !important;
 }
 
 .card-img-top{
