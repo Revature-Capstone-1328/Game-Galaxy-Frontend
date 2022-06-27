@@ -8,6 +8,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavBarComponent implements OnInit {
 
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+ }
+
   username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
 
   constructor(private userService:UserService) { }

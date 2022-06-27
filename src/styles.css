@@ -13,17 +13,17 @@ body.dark-theme{
 }
 
 
-.btnmode,
-.btnmode:after {
-  width: 150px;
-  height: 76px;
-  line-height: 78px;
+.btnmode{
+  right: -170px;
+  top: -10px;
+  width: 280px;
+  height: 40px;
+  line-height: 50px;
   font-size: 20px;
   font-family: 'Bebas Neue', sans-serif;
   background: linear-gradient(45deg, transparent 5%, #4097d1d3 5%);
   border: 0;
   color: #fff;
-  letter-spacing: 3px;
   box-shadow: 6px 0px 0px #0d6d70;
   outline: transparent;
   position: relative;
@@ -34,17 +34,8 @@ body.dark-theme{
 
 
 
-.btnmode:hover:after {
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
+.btnmode:hover{
+  background:#215269;
+  transition: 0.7s;
 }
 
-
-@media (min-width: 768px) {
-  .btnmode,
-  .btnmode:after {
-    width: 326px;
-    height: 40px;
-    line-height: 60px;
-  }
-}
