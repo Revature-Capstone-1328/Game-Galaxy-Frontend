@@ -9,4 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 })
 export class AppComponent {
   title = 'Game-Galaxy-Frontend';
+
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+ }
 }
+
