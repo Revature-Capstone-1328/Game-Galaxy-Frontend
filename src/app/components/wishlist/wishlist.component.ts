@@ -9,18 +9,23 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class WishlistComponent implements OnInit {
 
-  favs: number[] = [];
+  displayOnlyFavorites: boolean = false;
+  favs: string[] = [];
   favGames: Game[] = [];
 
   constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
+   this.getMyFavoriteGames();
   }
 
-  getFavorite = (id: number) => {
-    this.gameService.getFavorite(id).subscribe({
+  getFavorite = (gameID: number) => {
+    console.log("s"+ gameID);
+    this.gameService.getFavorite(gameID).subscribe({
       next: (data: Game) => {
+        console.log("coś");
         this.favGames.push(data);
+        console.log("uhduhs");
       },
       error: () => {
         console.log("Unable to access favorites.");
@@ -41,11 +46,13 @@ export class WishlistComponent implements OnInit {
 
   getMyFavoriteGames = () => {
     this.gameService.getMyFavoriteGames().subscribe({
-      next: (data: number[]) => {
-        this.favs = data;
-        for (let favId of data) {
-          this.getFavorite(favId);
-        }
+      next: (data: Game[]) => {
+        this.favGames = data;
+        console.log(data);
+        // for (let favId of data) {
+        //   console.log(favId);
+        //   this.(getFavoriteNumber(favId));
+        // }
         console.log("Favorites retrieved");
       },
       error: () => {
@@ -65,8 +72,18 @@ export class WishlistComponent implements OnInit {
     });
   }
 
-  addToCart(gameID: number){
+  toggleFavorites() {
+    if (this.displayOnlyFavorites) {
+      this.displayOnlyFavorites = false;
+    } else {
+      this.getMyFavoriteGames();
+      console.log("Retrieving favorites...");
+      this.displayOnlyFavorites = true;
+    }
+  }
 
+  addToCart(game: Game) {
+    this.gameService.cartGames.push(game);
   }
 
 }

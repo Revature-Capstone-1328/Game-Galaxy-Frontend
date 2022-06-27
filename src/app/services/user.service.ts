@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import * as bcrypt from 'bcryptjs';
+import { UserInformationComponent } from '../components/user-information/user-information.component';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class UserService {
   url:string = 'http://localhost:8087/users/';
 
   activeUser:User|null = null;
-  isLogged:boolean = false;
+  isLoggedIn:boolean = false;
 
   constructor(private http:HttpClient) { }
 
@@ -27,7 +28,7 @@ export class UserService {
 
   logout(){
     this.activeUser = null; 
-    this.isLogged = false;
+    this.isLoggedIn = false;
   }
 
   updateEmail(eMail:string):Observable<unknown>|null{

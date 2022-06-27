@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
           if (this.compareHash(user.password, authUser.password)) {
             console.log("Logged in correctly");
             this.userService.activeUser = authUser;
-            this.userService.isLogged = true;
+            this.userService.isLoggedIn = true;
             this.router.navigate(["/store"]);
           } else {
             this.userService.activeUser = null;
