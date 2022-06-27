@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/models/order';
 import { User } from 'src/app/models/user';
+import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,9 +18,10 @@ export class UserInformationComponent implements OnInit {
   confirmPassword:string="";
   unmatchedPassword:boolean = false;
   optionsVisibility:boolean = false;
+  orders:Order[] = [];
 
+  constructor(private userService:UserService, private cartService:CartService) { }
 
-  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -66,4 +69,17 @@ export class UserInformationComponent implements OnInit {
     this.eMail = this.userService.activeUser?this.userService.activeUser.eMail:"";
   }
 
+
+  viewHistory(){
+    this.cartService.getOrderHistory().subscribe({
+      next:(data)=>{
+        console.log("Fetching Order history");
+        console.log(data);
+        this.orders = data;
+      },
+      error:()=>{
+        console.log("No Orders."); 
+      }
+    })
+  }
 }

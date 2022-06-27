@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/models/cart';
 import { Game } from 'src/app/models/game';
+import { CartService } from 'src/app/services/cart.service';
 import { GameService } from 'src/app/services/game.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +19,7 @@ export class CartComponent implements OnInit {
  totalPrice:number = 0;
  
 
-  constructor(private gameService:GameService) { }
+  constructor(private gameService:GameService, private cartService:CartService, private router: Router) { }
 
   ngOnInit(): void {
       this.loadCart();
@@ -35,22 +37,18 @@ export class CartComponent implements OnInit {
 
     let subGames:Game[] = [];
     let cartIndex = 0;
-    let retailPrice:number = 0;
 
     this.cart = [];
     for (let index = 0; index < this.gameService.cartGames.length; index++) {
-      retailPrice = 0;
       let searchItem = this.cart.find(ct => ct.game.gameID == this.gameService.cartGames[index].gameID);
       if (searchItem == undefined){
-        retailPrice =  Number(this.gameService.cartGames[index].retailPrice);
-        let cartItem:Cart = new Cart(index,this.gameService.cartGames[index],1,retailPrice);
+        let cartItem:Cart = new Cart(index,this.gameService.cartGames[index],1);
+        this.totalPrice +=Number(this.gameService.cartGames[index].retailPrice);
         subGames = this.gameService.cartGames.filter(gm => {return gm.gameID == this.gameService.cartGames[index].gameID});
         for (let sub = 0; sub < subGames.length-1; sub++) {
-          retailPrice += Number(this.gameService.cartGames[index].retailPrice) ;
+          this.totalPrice +=Number(this.gameService.cartGames[index].retailPrice);
           cartItem.quantity += 1;
         }
-        cartItem.price = Number(retailPrice.toFixed(2)) ;
-        this.totalPrice +=retailPrice;
         this.cart[cartIndex] = cartItem;
         cartIndex++;
       }
@@ -60,7 +58,7 @@ export class CartComponent implements OnInit {
   
   removeFromCart(cartGame:Cart){
     let index:number = this.cart.indexOf(cartGame);
-    this.totalPrice -= cartGame.price;
+    this.totalPrice -= (cartGame.game.retailPrice * cartGame.quantity);
     this.totalPrice = Number(this.totalPrice.toFixed(2));
     this.cart.splice(index,1);
 
@@ -73,6 +71,11 @@ export class CartComponent implements OnInit {
       }
     }
 
+  }
+
+  checkout(){
+    this.cartService.checkoutCart = this.cart;
+    this.router.navigate(['/checkout']);
   }
 
 }
