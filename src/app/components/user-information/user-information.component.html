@@ -58,8 +58,8 @@
     <button class="btn btn-primary" (click)="viewHistory()">View Order history</button>
   </div>
 
-  <div class="row" *ngIf="orders.length>0">
-    <table class="table table-hover table-light" *ngFor="let order of orders">
+  <div class="row" *ngIf="orderHistory.length>0">
+    <table class="table table-hover table-light" *ngFor="let order of orderHistory">
         <thead>
           <tr>
             <th>Order Id: {{order.orderId}}</th>
@@ -67,19 +67,20 @@
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let game of order.games">
-            <td [colSpan]="2">
-              <img src="{{game.thumb}}" class="img-fluid rounded thumbnail-image">
+          <tr>
+            <td>
+              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">
+            </td>
+            <td>
+              <span><b>{{order.game.name}}</b></span>
               <br>
-              <span><b>{{game.name}}</b></span>
+              <span><b>Game ID:</b> {{order.game.gameID}}</span>
               <br>
-              <span><b>Game ID:</b> {{game.gameID}}</span>
+              <span><b>Release Date:</b> {{order.game.releaseDate|date:'yyyy-MM-dd'}}</span>
               <br>
-              <span><b>Release Date:</b> {{game.releaseDate|date:'yyyy-MM-dd'}}</span>
+              <span><b>Retail Price:</b> {{order.game.retailPrice | currency:'EUR'}}</span>
               <br>
-              <span><b>Retail Price:</b> {{game.retailPrice | currency:'EUR'}}</span>
-              <br>
-              <span><b>Quantity:</b></span>
+              <span><b>Quantity:</b> {{order.quantity}}</span>
             </td>
           </tr>
         </tbody>
