@@ -28,8 +28,9 @@ export class CheckoutComponent implements OnInit {
   displayCart(){
  //   console.log(this.cartService.checkoutCart);
     this.chCart = this.cartService.checkoutCart;
+    this.totalPrice = 0;
     for (let index = 0; index < this.chCart.length; index++) 
-        this.totalPrice +=Number(this.chCart[index].game.retailPrice);
+        this.totalPrice +=Number(this.chCart[index].game.retailPrice) * Number(this.chCart[index].quantity);
     this.totalPrice = Number(this.totalPrice.toFixed(2));
 
   }
