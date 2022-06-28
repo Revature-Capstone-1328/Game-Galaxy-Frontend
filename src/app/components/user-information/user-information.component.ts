@@ -13,8 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserInformationComponent implements OnInit {
 
-  username:string | null = (this.userService.loggedUser());
-  eMail:string | null = (this.userService.loggedUserEmail());
+  username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
+  eMail?:string = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
   newEmail:string="";
   newPassword:string="";
   confirmPassword:string="";
@@ -35,11 +35,10 @@ export class UserInformationComponent implements OnInit {
       this.userService.updateEmail(this.newEmail)?.subscribe({
         next:()=>{
           console.log("Email changed.");
-          sessionStorage.setItem("Email", this.newEmail);
-          this.eMail = sessionStorage.getItem("Email");
+          this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
-          console.log("Something went wrong changing the Email.");
+          console.log("Something went wrong changing the Email."); 
         }
       })
     }
@@ -59,7 +58,7 @@ export class UserInformationComponent implements OnInit {
           this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
-          console.log("Something went wrong changing the Email.");
+          console.log("Something went wrong changing the Email."); 
         }
       })
     }
@@ -84,28 +83,50 @@ export class UserInformationComponent implements OnInit {
           this.orders = data;
           this.orderHistory = [];
           let quantity:number = 0;
-          let index = 0
+          let ordIndex = 0
           let gm = 0;
+          let i = 0;
 
-          while( index < this.orders.length){
+          for (let index =0; index< this.orders.length; index++){
             quantity = 0;
-            gm = index;
-
-            while(gm < this.orders[index].games.length){
+            gm = 0;
+            i = 0;
+            //console.log("ind"+this.orders[index].games.length);
+            while ( i < this.orders[index].games.length){
+              console.log(this.orders[index].games[i].gameID);
+              console.log(this.orders[index].games[gm].gameID);
+             
+              if(this.orders[index].games[gm].gameID == this.orders[index].games[i].gameID){
                 quantity += 1;
-                gm++;
+              }else{
+
+                console.log("ordIndex"+ordIndex);
+                let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
+                  this.orders[index].games[gm],quantity);
+                this.orderHistory[ordIndex] = historyItem;
+                ordIndex++;
+                quantity = 1;
+                gm = i;
+              }
+              console.log("qty"+quantity);
+              console.log(gm);
+              console.log("---");
+              i++;
             }
+
             let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
-                          this.orders[index].games[index],quantity);
-            index++;
+              this.orders[index].games[gm],quantity);
+            this.orderHistory[ordIndex] = historyItem;
+            ordIndex++;
           }
-         
+          console.log(this.orderHistory);
+          console.log(this.orderHistory.length);
         }else{
           console.log("Orders length is zero!");
         }
       },
       error:()=>{
-        console.log("No Orders.");
+        console.log("No Orders."); 
       }
     })
   }

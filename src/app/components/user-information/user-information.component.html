@@ -68,12 +68,7 @@
         </thead>
         <tbody >
           <tr>
-            <td>
-              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">
-            </td>
-            <td>
-              <span><b>{{order.game.name}}</b></span>
-              <br>
+            <td>   
               <span><b>Game ID:</b> {{order.game.gameID}}</span>
               <br>
               <span><b>Release Date:</b> {{order.game.releaseDate|date:'yyyy-MM-dd'}}</span>
@@ -81,6 +76,13 @@
               <span><b>Retail Price:</b> {{order.game.retailPrice | currency:'EUR'}}</span>
               <br>
               <span><b>Quantity:</b> {{order.quantity}}</span>
+              <br>
+              <span><b>Total Price:</b> {{(order.quantity*order.game.retailPrice)| currency:'EUR'}}</span>
+            </td>
+            <td align="left">
+              <span><b>{{order.game.name}}</b></span>
+              <br>
+              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">             
             </td>
           </tr>
         </tbody>
