@@ -67,25 +67,29 @@
           </tr>
         </thead>
         <tbody >
-          <tr>
+          <tr *ngFor="let cartItem of  order.games">
             <td>   
-              <span><b>Game ID:</b> {{order.game.gameID}}</span>
+              <span><b>Game ID:</b> {{cartItem.game.gameID}}</span>
+             <br>
+              <span><b>Release Date:</b> {{cartItem.game.releaseDate|date:'yyyy-MM-dd'}}</span>
               <br>
-              <span><b>Release Date:</b> {{order.game.releaseDate|date:'yyyy-MM-dd'}}</span>
+              <span><b>Retail Price:</b> {{cartItem.game.retailPrice | currency:'EUR'}}</span>
               <br>
-              <span><b>Retail Price:</b> {{order.game.retailPrice | currency:'EUR'}}</span>
+              <span><b>Quantity:</b> {{cartItem.quantity}}</span>
               <br>
-              <span><b>Quantity:</b> {{order.quantity}}</span>
-              <br>
-              <span><b>Total Price:</b> {{(order.quantity*order.game.retailPrice)| currency:'EUR'}}</span>
+              <span><b>Total Price:</b> {{(cartItem.quantity*cartItem.game.retailPrice)| currency:'EUR'}}</span>
             </td>
-            <td align="left">
-              <span><b>{{order.game.name}}</b></span>
+            <td>
+              <span><b>{{cartItem.game.name}}</b></span>
               <br>
-              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">             
+              <img src="{{cartItem.game.thumb}}" class="img-fluid rounded thumbnail-image">             
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <td>Order Total: </td>
+          <td>{{order.totalPrice| currency:'EUR'}}</td>
+        </tfoot>
     </table>
     <br>
   </div>

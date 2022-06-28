@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/models/cart';
+import { Game } from 'src/app/models/game';
 import { Order } from 'src/app/models/order';
 import { Orderhistory } from 'src/app/models/orderhistory';
 import { User } from 'src/app/models/user';
@@ -73,7 +74,19 @@ export class UserInformationComponent implements OnInit {
     this.eMail = this.userService.activeUser?this.userService.activeUser.eMail:"";
   }
 
+  register(){
+  
+    const m = 4;
+    const n = 2;
+    let arr = Array.from(Array(m),() => new Array(n));
+    arr[0] = ["hello",2];
+   // let arr = Array(m).fill().map(() => Array(n));
+    console.log(arr);
+  
+   }
 
+   
+  
   viewHistory(){
     this.cartService.getOrderHistory().subscribe({
       next:(data:Order[])=>{
@@ -86,30 +99,48 @@ export class UserInformationComponent implements OnInit {
           let ordIndex = 0
           let gm = 0;
           let i = 0;
-
+          let total:number = 0;
+         
           for (let index =0; index< this.orders.length; index++){
             quantity = 0;
             gm = 0;
             i = 0;
+            ordIndex = 0
+            total = 0;
+            let historyItem:Cart[] = [];
+
             while ( i < this.orders[index].games.length){
               if(this.orders[index].games[gm].gameID == this.orders[index].games[i].gameID){
                 quantity += 1;
               }else{
-                let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
-                  this.orders[index].games[gm],quantity);
-                this.orderHistory[ordIndex] = historyItem;
+
+                let cartItem:Cart = new Cart(ordIndex,this.orders[index].games[gm],quantity);
+                historyItem[ordIndex] = cartItem;
+                total += Number(this.orders[index].games[gm].retailPrice)*quantity;
                 ordIndex++;
                 quantity = 1;
                 gm = i;
               }
              i++;
             }
-
-            let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
-              this.orders[index].games[gm],quantity);
-            this.orderHistory[ordIndex] = historyItem;
-            ordIndex++;
+            let cartItem:Cart = new Cart(ordIndex,this.orders[index].games[gm],quantity);
+            historyItem[ordIndex] = cartItem;
+            total += Number(this.orders[index].games[gm].retailPrice)*quantity;
+            total = Number(total.toFixed(2));
+            this.orderHistory[index] = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, historyItem, total);
           }
+
+      /*    for (let index=0; index < this.orderHistory.length; index++){
+            console.log(this.orderHistory[index].orderId);
+            console.log(this.orderHistory[index].orderDate);
+        
+            console.log(this.orderHistory[index].games);
+            console.log(this.orderHistory[index].games[0].game.gameID);
+            console.log(this.orderHistory[index].games[0].quantity);
+            console.log(this.orderHistory[index].games.length);
+
+            console.log("--------------------");
+          }*/
         }else{
           console.log("Orders length is zero!");
         }

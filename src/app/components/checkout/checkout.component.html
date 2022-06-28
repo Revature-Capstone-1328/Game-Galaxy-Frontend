@@ -1,8 +1,5 @@
-<div >
-    <label>{{message}}</label>
-</div>
-<br>
-<div class="container-fluid">
+
+<div *ngIf="visible" class="container-fluid">
      <div class="card-body">
         <div class="row upper">
             <span class="header">Order details</span>
@@ -43,9 +40,9 @@
                     <div class="row item" *ngFor="let cartItem of chCart">
                         <div class="col-4 align-self-center"><img class="img-fluid" src="{{cartItem.game.thumb}}"></div>
                         <div class="col-8">
-                            <div class="row"><b>{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</b></div>
+                            <div class="row">{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</div>
                             <div class="row text-muted">{{cartItem.game.name}}</div>
-                            <div class="row">Qty:{{cartItem.quantity}}</div>
+                            <div class="row">Quantity: {{cartItem.quantity}}</div>
                         </div>
                     </div>
                     <hr>
@@ -68,5 +65,30 @@
         </div>
     </div>
     <div>
+    </div>
+</div>
+
+<div *ngIf="messageVisible">
+    <br>
+   <h4 style="color:rgba(124, 132, 156, 0.568)">Thank you for your Order.</h4>
+   <br>
+    <div class="col-md-10">
+        <div class="right border">
+            <div><b>Order Summary</b></div>
+            <p>{{chCart.length}} games</p>
+            <div class="row item" *ngFor="let cartItem of chCart">
+                <div class="col-5 align-self-center"><img class="img-fluid" src="{{cartItem.game.thumb}}"></div>
+                <div class="col-7">
+                    <div class="row">{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</div>
+                    <div class="row text-muted">{{cartItem.game.name}}</div>
+                    <div class="row">Quantity: {{cartItem.quantity}}</div>
+                </div>
+            </div>
+            <hr>
+            <div class="row lower">
+                <div class="col-5 text-left"><b>Order Total</b></div>
+                <div class="col-7"><b>{{totalPrice |currency:'EUR'}}</b></div>
+            </div>
+        </div>
     </div>
 </div>
