@@ -91,16 +91,10 @@ export class UserInformationComponent implements OnInit {
             quantity = 0;
             gm = 0;
             i = 0;
-            //console.log("ind"+this.orders[index].games.length);
             while ( i < this.orders[index].games.length){
-              console.log(this.orders[index].games[i].gameID);
-              console.log(this.orders[index].games[gm].gameID);
-             
               if(this.orders[index].games[gm].gameID == this.orders[index].games[i].gameID){
                 quantity += 1;
               }else{
-
-                console.log("ordIndex"+ordIndex);
                 let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
                   this.orders[index].games[gm],quantity);
                 this.orderHistory[ordIndex] = historyItem;
@@ -108,10 +102,7 @@ export class UserInformationComponent implements OnInit {
                 quantity = 1;
                 gm = i;
               }
-              console.log("qty"+quantity);
-              console.log(gm);
-              console.log("---");
-              i++;
+             i++;
             }
 
             let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
@@ -119,8 +110,6 @@ export class UserInformationComponent implements OnInit {
             this.orderHistory[ordIndex] = historyItem;
             ordIndex++;
           }
-          console.log(this.orderHistory);
-          console.log(this.orderHistory.length);
         }else{
           console.log("Orders length is zero!");
         }
