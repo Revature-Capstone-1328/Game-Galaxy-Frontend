@@ -1,4 +1,4 @@
-<h4 *ngIf="!username" style="color:rgba(124, 132, 156, 0.568)">You need to login to view this page!</h4>
+<h4 *ngIf="!username" class="message">You need to login to view this page!</h4>
 <div *ngIf="username">
 
   <div class="container mt-5">
@@ -14,12 +14,18 @@
             </div>
             <div class="mb-3" *ngIf="!optionsVisibility"> <button class="btn btn-dark w-100" (click)="updateOptionsVisibility()">Edit user details</button>
             </div>
+
+            <div class="mb-3" *ngIf="!optionsVisibility"> <button class="btn btn-dark w-100"
+                (click)="viewHistory()">View Order history</button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <br><br>
   <div class="container mt-5" *ngIf="optionsVisibility">
     <div class="row d-flex justify-content-center">
       <div class="col-md-6">
@@ -53,12 +59,9 @@
     </div>
   </div>
 
-  <div class="form">
-    <h2 class="title">View Order history</h2>
-    <button class="btn btn-primary" (click)="viewHistory()">View Order history</button>
-  </div>
-
   <div class="row" *ngIf="orderHistory.length>0">
+    <br>
+    <h2 class="title">Order history:</h2>
     <table class="table table-hover table-light" *ngFor="let order of orderHistory">
         <thead>
           <tr>
@@ -68,7 +71,7 @@
         </thead>
         <tbody >
           <tr>
-            <td>   
+            <td>
               <span><b>Game ID:</b> {{order.game.gameID}}</span>
               <br>
               <span><b>Release Date:</b> {{order.game.releaseDate|date:'yyyy-MM-dd'}}</span>
@@ -82,7 +85,7 @@
             <td align="left">
               <span><b>{{order.game.name}}</b></span>
               <br>
-              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">             
+              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">
             </td>
           </tr>
         </tbody>

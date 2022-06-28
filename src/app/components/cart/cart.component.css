@@ -6,6 +6,18 @@
 }
 
 .table{
-  width:60%;
-  margin-left: 50px;
+  width:55%;
+  margin-left: 25px;
+}
+
+.message {
+  color: #333;
+  margin-left: 25px;
+  margin-top: 25px;
+}
+
+#shopping-cart-title {
+  color: #333 !important;
+  margin-left: 25px;
+  margin-top: 25px;
 }

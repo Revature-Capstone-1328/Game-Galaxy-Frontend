@@ -4,11 +4,12 @@ body {
 
 }
 
-h4{
-  color:rgba(124, 132, 156, 0.568);
-}
-h5{
-  color:rgba(124, 132, 156, 0.568);
+
+
+.message{
+  color: #333;
+  margin-left: 25px;
+  margin-top: 25px;
 }
 
 .card-img-top {
@@ -100,5 +101,3 @@ h5{
 .btn-primary:hover {
   background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
 }
-
-

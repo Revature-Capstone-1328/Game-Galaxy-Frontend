@@ -1,6 +1,6 @@
 <div *ngIf="cart.length==0" class="row">
-    <h4 style="color:rgba(124, 132, 156, 0.568)">Your shopping cart is empty!</h4>
-    <h5 style="color:rgba(124, 132, 156, 0.568)">Please add games from store or your wishlist.</h5>
+    <h4 class="message">Your shopping cart is empty!</h4>
+    <h5 class="message">Please add games from store or your wishlist.</h5>
 </div>
 <div class="container-fluid" >
     <div *ngIf="cart.length>0">
@@ -47,6 +47,8 @@
                 <button (click)=checkout() class="btn btn-light">Proceed to Checkout</button>
             </div>
         </div>
+        <br>
     </div>
+    <br><br><br>
 
 </div>

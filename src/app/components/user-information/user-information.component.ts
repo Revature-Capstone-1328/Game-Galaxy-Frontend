@@ -38,7 +38,7 @@ export class UserInformationComponent implements OnInit {
           this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
-          console.log("Something went wrong changing the Email."); 
+          console.log("Something went wrong changing the Email.");
         }
       })
     }
@@ -58,7 +58,7 @@ export class UserInformationComponent implements OnInit {
           this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
-          console.log("Something went wrong changing the Email."); 
+          console.log("Something went wrong changing the Email.");
         }
       })
     }
@@ -79,7 +79,7 @@ export class UserInformationComponent implements OnInit {
       next:(data:Order[])=>{
         console.log("Fetching Order history");
         console.log(data);
-        if(data != null){            
+        if(data != null){
           this.orders = data;
           this.orderHistory = [];
           let quantity:number = 0;
@@ -95,7 +95,7 @@ export class UserInformationComponent implements OnInit {
               if(this.orders[index].games[gm].gameID == this.orders[index].games[i].gameID){
                 quantity += 1;
               }else{
-                let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
+                let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate,
                   this.orders[index].games[gm],quantity);
                 this.orderHistory[ordIndex] = historyItem;
                 ordIndex++;
@@ -105,7 +105,7 @@ export class UserInformationComponent implements OnInit {
              i++;
             }
 
-            let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
+            let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate,
               this.orders[index].games[gm],quantity);
             this.orderHistory[ordIndex] = historyItem;
             ordIndex++;
@@ -115,7 +115,7 @@ export class UserInformationComponent implements OnInit {
         }
       },
       error:()=>{
-        console.log("No Orders."); 
+        console.log("No Orders.");
       }
     })
   }
