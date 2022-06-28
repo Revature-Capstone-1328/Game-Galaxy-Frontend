@@ -129,7 +129,7 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 15px;
-  float: left
+  float: left;
 }
 
 #filterbar input[type="radio"] {
@@ -220,7 +220,7 @@ label {
 }
 
 .box {
-  padding: 10px
+  padding: 10px;
 }
 
 .box-label {
@@ -231,12 +231,12 @@ label {
 
 #inner-box,
 #inner-box2 {
-  height: 150px;
+  height: 250px;
   overflow-y: scroll
 }
 
 #inner-box2 {
-  height: 132px
+  height: 180px
 }
 
 #inner-box::-webkit-scrollbar,
