@@ -146,4 +146,66 @@ export class StoreComponent implements OnInit {
     this.config.currentPage = event;
   }
 
+  tempGameArray:any = [];
+  newArray:any = [];
+  onChange(event:any){
+    let ogGameArray:any = this.games;
+    if(event.target.checked){
+      console.log("Filtering " + event.target.value + " games");
+      console.log("games count:" + this.games.length);
+      this.tempGameArray = this.allGames.filter((e: any) => e.steamRatingText == event.target.value);
+      this.games=[];
+      this.newArray.push(this.tempGameArray);
+      for(let i=0; i<this.newArray.length;i++){
+        var firstArray = this.newArray[i];
+        for(let i=0; i<firstArray.length; i++){
+          var obj = firstArray[i];
+          this.games.push(obj);
+        }
+      }
+      console.log("filtered games count:" + this.games.length);
+
+    }else{
+      console.log("Removing " + event.target.value + " games");
+      console.log("games count:"+ this.games.length);
+      this.tempGameArray = this.games.filter((e: any) => e.steamRatingText != event.target.value);
+      this.newArray=[];
+      this.games = [];
+      this.newArray.push(this.tempGameArray);
+      for (let i = 0; i < this.newArray.length; i++) {
+        var firstArray = this.newArray[i];
+        for (let i = 0; i < firstArray.length; i++) {
+          var obj = firstArray[i];
+          this.games.push(obj);
+        }
+      }
+      console.log("filtered games count:" + this.games.length);
+    }
+
+  }
+
+
+
+
+
 }
+
+/*
+const box = document.getElementById('#inner-box2') as HTMLDivElement | null;
+this.box.on('change',function(){
+  if(box.)
+});
+
+
+$('#inner-box2').on('change', function () {
+
+  if (this.checked) {
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function () {
+      return $(this).find('td').eq(3).text() !== "0"
+    }).show();
+  } else {
+    $('.searchable tr').show();
+  }
+
+});*/
