@@ -15,7 +15,7 @@
             <div class="mb-3" *ngIf="!optionsVisibility"> <button class="btn btn-dark w-100" (click)="updateOptionsVisibility()">Edit user details</button>
             </div>
             <br>
-            <div class="mb-3" *ngIf="!optionsVisibility"> <button class="btn btn-dark w-100"
+            <div class="mb-3"> <button class="btn btn-dark w-100"
                 (click)="viewHistory()">View Order history</button>
             </div>
 
@@ -58,6 +58,7 @@
       </div>
     </div>
   </div>
+  <br>
 
   <div class="row" *ngIf="orderHistory.length>0">
     <br>
@@ -92,5 +93,6 @@
     </table>
     <br>
   </div>
+  <br><br>
 
 </div>
