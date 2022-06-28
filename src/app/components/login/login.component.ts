@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService:UserService, private router:Router) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
   }
 
   login(){
@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
             console.log("Logged in correctly");
             this.userService.activeUser = authUser;
             this.userService.isLoggedIn = true;
+            sessionStorage.setItem("User", this.username);
+            sessionStorage.setItem("Email", authUser.eMail);
             this.router.navigate(["/store"]);
           } else {
             this.userService.activeUser = null;
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["/register"]);
         }
       }
-    );    
+    );
   }
 
 compareHash(password:string, hashed:string){

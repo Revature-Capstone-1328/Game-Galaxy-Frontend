@@ -10,7 +10,7 @@ export class NavBarComponent implements OnInit {
 
   username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
 
-  constructor(private userService:UserService) { }
+  constructor(public userService:UserService) { }
 
   ngOnInit(): void {
   }

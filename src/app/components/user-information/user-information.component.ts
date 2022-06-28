@@ -11,8 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserInformationComponent implements OnInit {
 
-  username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
-  eMail?:string = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
+  username:string | null = (this.userService.loggedUser());
+  eMail:string | null = (this.userService.loggedUserEmail());
   newEmail:string="";
   newPassword:string="";
   confirmPassword:string="";
@@ -31,10 +31,11 @@ export class UserInformationComponent implements OnInit {
       this.userService.updateEmail(this.newEmail)?.subscribe({
         next:()=>{
           console.log("Email changed.");
-          this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
+          sessionStorage.setItem("Email", this.newEmail);
+          this.eMail = sessionStorage.getItem("Email");
         },
         error:()=>{
-          console.log("Something went wrong changing the Email."); 
+          console.log("Something went wrong changing the Email.");
         }
       })
     }
@@ -54,7 +55,7 @@ export class UserInformationComponent implements OnInit {
           this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
-          console.log("Something went wrong changing the Email."); 
+          console.log("Something went wrong changing the Email.");
         }
       })
     }
@@ -78,7 +79,7 @@ export class UserInformationComponent implements OnInit {
         this.orders = data;
       },
       error:()=>{
-        console.log("No Orders."); 
+        console.log("No Orders.");
       }
     })
   }
