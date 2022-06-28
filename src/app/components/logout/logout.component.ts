@@ -12,8 +12,8 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.clearAll();
-    window.location.reload()
   }
+
 
 
 }
