@@ -43,7 +43,7 @@
                     <div class="row item" *ngFor="let cartItem of chCart">
                         <div class="col-4 align-self-center"><img class="img-fluid" src="{{cartItem.game.thumb}}"></div>
                         <div class="col-8">
-                            <div class="row"><b>{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</b></div>
+                            <div class="row">{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</div>
                             <div class="row text-muted">{{cartItem.game.name}}</div>
                             <div class="row">Qty:{{cartItem.quantity}}</div>
                         </div>
