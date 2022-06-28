@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class StoreComponent implements OnInit {
 
   games: Game[] = [];
+  allGames: Game[] = [];
   name: string = "";
   date: Date= new Date();
   config: any;
@@ -33,6 +34,7 @@ export class StoreComponent implements OnInit {
 
   Search() {
     if (this.name == "") {
+      this.games=this.allGames;
     } else {
       this.games = this.games.filter(res => {
         return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
@@ -103,6 +105,7 @@ export class StoreComponent implements OnInit {
     this.gameService.getAllGames().subscribe({
       next: (data: Game[]) => {
         this.games=data;
+        this.allGames=data;
       },
       error: () => {
         console.log("Unable to access games from Database.");

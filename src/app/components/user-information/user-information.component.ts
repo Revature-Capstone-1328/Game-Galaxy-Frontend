@@ -72,7 +72,7 @@ export class UserInformationComponent implements OnInit {
 
   viewHistory(){
     this.cartService.getOrderHistory().subscribe({
-      next:(data)=>{
+      next:(data:Order[])=>{
         console.log("Fetching Order history");
         console.log(data);
         this.orders = data;

@@ -1,14 +1,16 @@
 
 body{
   --text-color: rgba(0, 0, 0, 0.644);
-  background-color: rgb(221, 223, 250);
-  
- 
+  /*background-color: rgb(221, 223, 250);*/
+  background-color: rgb(218, 232, 250);
+
+
+
 }
 
 body.dark-theme{
   --text-color: rgb(177, 178, 192);
-  background-color: rgba(0, 0, 0, 0.856); 
+  background-color: rgba(0, 0, 0, 0.856);
 
 }
 
@@ -39,3 +41,12 @@ body.dark-theme{
   transition: 0.7s;
 }
 
+
+@media (min-width: 768px) {
+  .btnmode,
+  .btnmode:after {
+    width: 326px;
+    height: 40px;
+    line-height: 60px;
+  }
+}
