@@ -5,7 +5,7 @@
 <div class="container-fluid">
      <div class="card-body">
         <div class="row upper">
-            <span><i class="fa fa-check-circle-o"></i> Order details</span>
+            <span class="header">Order details</span>
         </div>
         <div class="row">
             <div class="col-md-5">
@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-7">
                 <div class="right border">
-                    <div class="header">Order Summary</div>
+                    <div><b>Order Summary</b></div>
                     <p>{{chCart.length}} games</p>
                     <div class="row item" *ngFor="let cartItem of chCart">
                         <div class="col-4 align-self-center"><img class="img-fluid" src="{{cartItem.game.thumb}}"></div>
