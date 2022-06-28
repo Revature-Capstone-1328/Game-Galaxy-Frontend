@@ -21,3 +21,9 @@ li a {
 li a:hover {
   background-color: #111;
 }
+
+.btnmode{
+  width: 250px;
+  float:right;
+
+}

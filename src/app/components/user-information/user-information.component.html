@@ -1,4 +1,4 @@
-<h4 *ngIf="!username" style="color:rgba(124, 132, 156, 0.568)">You need to login to view this page!</h4>
+<h4 *ngIf="!username" class="message">You need to login to view this page!</h4>
 <div *ngIf="username">
 
   <div class="container mt-5">
@@ -14,12 +14,18 @@
             </div>
             <div class="mb-3" *ngIf="!optionsVisibility"> <button class="btn btn-dark w-100" (click)="updateOptionsVisibility()">Edit user details</button>
             </div>
+            <br>
+            <div class="mb-3"> <button class="btn btn-dark w-100"
+                (click)="viewHistory()">View Order history</button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <br><br>
   <div class="container mt-5" *ngIf="optionsVisibility">
     <div class="row d-flex justify-content-center">
       <div class="col-md-6">
@@ -52,26 +58,30 @@
       </div>
     </div>
   </div>
-
-  <div class="form">
-    <h2 class="title">View Order history</h2>
-    <button class="btn btn-primary" (click)="viewHistory()">View Order history</button>
-  </div>
+  <br>
 
   <div class="row" *ngIf="orderHistory.length>0">
+    <br>
+    <h4 class="message">Order history:</h4>
     <table class="table table-hover table-light" *ngFor="let order of orderHistory">
         <thead>
           <tr>
-            <th>Order Id: {{order.orderId}}</th>
             <th>Order Date: {{order.orderDate}}</th>
+            <th>Game</th>
           </tr>
         </thead>
         <tbody >
+<<<<<<< HEAD
           <tr *ngFor="let cartItem of  order.games">
             <td>   
               <span><b>Game ID:</b> {{cartItem.game.gameID}}</span>
              <br>
               <span><b>Release Date:</b> {{cartItem.game.releaseDate|date:'yyyy-MM-dd'}}</span>
+=======
+          <tr>
+            <td>
+              <span><b>Game ID:</b> {{order.game.gameID}}</span>
+>>>>>>> 2652d1218223a464233ba7e8a170b5fcd08c96ea
               <br>
               <span><b>Retail Price:</b> {{cartItem.game.retailPrice | currency:'EUR'}}</span>
               <br>
@@ -82,7 +92,11 @@
             <td>
               <span><b>{{cartItem.game.name}}</b></span>
               <br>
+<<<<<<< HEAD
               <img src="{{cartItem.game.thumb}}" class="img-fluid rounded thumbnail-image">             
+=======
+              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">
+>>>>>>> 2652d1218223a464233ba7e8a170b5fcd08c96ea
             </td>
           </tr>
         </tbody>
@@ -93,5 +107,6 @@
     </table>
     <br>
   </div>
+  <br><br>
 
 </div>

@@ -39,7 +39,7 @@ export class UserInformationComponent implements OnInit {
           this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
-          console.log("Something went wrong changing the Email."); 
+          console.log("Something went wrong changing the Email.");
         }
       })
     }
@@ -59,7 +59,7 @@ export class UserInformationComponent implements OnInit {
           this.eMail = (this.userService.activeUser)?this.userService.activeUser.eMail:"";
         },
         error:()=>{
-          console.log("Something went wrong changing the Email."); 
+          console.log("Something went wrong changing the Email.");
         }
       })
     }
@@ -92,7 +92,7 @@ export class UserInformationComponent implements OnInit {
       next:(data:Order[])=>{
         console.log("Fetching Order history");
         console.log(data);
-        if(data != null){            
+        if(data != null){
           this.orders = data;
           this.orderHistory = [];
           let quantity:number = 0;
@@ -129,24 +129,12 @@ export class UserInformationComponent implements OnInit {
             total = Number(total.toFixed(2));
             this.orderHistory[index] = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, historyItem, total);
           }
-
-      /*    for (let index=0; index < this.orderHistory.length; index++){
-            console.log(this.orderHistory[index].orderId);
-            console.log(this.orderHistory[index].orderDate);
-        
-            console.log(this.orderHistory[index].games);
-            console.log(this.orderHistory[index].games[0].game.gameID);
-            console.log(this.orderHistory[index].games[0].quantity);
-            console.log(this.orderHistory[index].games.length);
-
-            console.log("--------------------");
-          }*/
         }else{
           console.log("Orders length is zero!");
         }
       },
       error:()=>{
-        console.log("No Orders."); 
+        console.log("No Orders.");
       }
     })
   }

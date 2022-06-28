@@ -1,11 +1,62 @@
 body{background: #000}
-.card{border: none;height: 320px}
-.forms-inputs{position: relative}
+.card{
+  border: none;
+  /*height: 280px !important;*/
+}
+/*.forms-inputs{position: relative}
 .forms-inputs span{position: absolute;top:-18px;left: 10px;background-color: #fff;padding: 5px 10px;font-size: 15px}
 .forms-inputs input{height: 50px;border: 2px solid #eee}
 .forms-inputs input:focus{box-shadow: none;outline: none;border: 2px solid #000}
+*/
 .btn{height: 50px}.success-data{display: flex;flex-direction: column}
 .bxs-badge-check{font-size: 90px}
 #userinfocard {border: none;height: 160px}
 #changeemailcard {border: none;height: 210px}
 #changepwdcard {border: none;height: 280px}
+
+.forms-inputs {
+  position: relative;
+}
+
+.forms-inputs span {
+  position: absolute;
+  top: -18px;
+  left: 10px;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
+
+}
+
+.forms-inputs input {
+  height: 50px;
+  border: 2px solid #eee;
+  width: 540px !important;
+  text-align: center !important;
+
+}
+
+.forms-inputs input:focus {
+  box-shadow: none;
+  outline: none;
+  border: 2px solid #000;
+}
+
+
+.thumbnail-image {
+  border-radius: 5px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 150px;
+  height: 60px;
+}
+
+.table {
+  width: 60%;
+  margin-left: 50px;
+}
+
+.message {
+  color: #333;
+  margin-left: 35px;
+  margin-top: 25px;
+}
