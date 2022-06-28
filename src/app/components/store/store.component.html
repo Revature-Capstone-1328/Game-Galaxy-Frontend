@@ -27,14 +27,22 @@
             data-toggle="collapse" data-target="#inner-box2" aria-expanded="false" aria-controls="inner-box2"><span
               class="fas fa-plus"></span></button> </div>
         <div id="inner-box2" class="mt-2 mr-1">
-          <div class="my-1"> <label class="tick">Mixed <input type="checkbox" checked="checked"> <span class="check"></span>
-            </label> </div>
-          <div class="my-1"> <label class="tick">Mostly Positive <input type="checkbox" checked="checked"> <span class="check"></span>
+          <div class="my-1"> <label class="tick">Mostly Negative <input type="checkbox" checked="checked" value="Mostly Negative"
+                (change)="onChange($event)"> <span class="check"></span>
             </label>
           </div>
-          <div class="my-1"> <label class="tick">Very Positive <input type="checkbox" checked="checked"> <span class="check"></span>
+          <div class="my-1"> <label class="tick">Mixed <input type="checkbox" checked="checked" value="Mixed" (change)="onChange($event)"> <span class="check"></span>
             </label> </div>
-          <div class="my-1"> <label class="tick">Overwhelmingly Positive <input type="checkbox" checked="check"> <span
+          <div class="my-1"> <label class="tick">Positive <input type="checkbox" checked="checked" value="Positive" (change)="onChange($event)"> <span class="check"></span>
+            </label>
+          </div>
+          <div class="my-1"> <label class="tick">Mostly Positive <input type="checkbox" checked="checked" value="Mostly Positive" (change)="onChange($event)"> <span
+                class="check"></span>
+            </label>
+          </div>
+          <div class="my-1"> <label class="tick">Very Positive <input type="checkbox" checked="checked" value="Very Positive" (change)="onChange($event)"> <span class="check"></span>
+            </label> </div>
+          <div class="my-1"> <label class="tick">Overwhelmingly Positive <input type="checkbox" checked="check" value="Overwhelmingly Positive" (change)="onChange($event)"> <span
                 class="check"></span> </label>
           </div>
         </div>
@@ -66,7 +74,7 @@
 
 
 
-    <div id="games">
+    <div id="games" *ngIf="games.length>0">
 
       <div class="row">
 
@@ -146,6 +154,11 @@
 
       </div>
     </div>
+
+    <div class="search-message" *ngIf="games.length==0">
+      <h4 id="search-criteria">No games meet that search criteria.</h4>
+    </div>
+
   </div>
 </div>
 

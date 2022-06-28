@@ -1,13 +1,14 @@
-<div *ngIf="!username" class="row">
-    <h5>You need to login to view this page!</h5>
+<div >
+    <label>{{message}}</label>
 </div>
+<br>
 <div class="container-fluid">
      <div class="card-body">
         <div class="row upper">
             <span><i class="fa fa-check-circle-o"></i> Order details</span>
         </div>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-5">
                 <div class="left border">
                     <div class="row">
                         <span class="header">Payment</span>
@@ -35,7 +36,7 @@
                     </form>
                 </div>                        
             </div>
-            <div class="col-md-5">
+            <div class="col-md-7">
                 <div class="right border">
                     <div class="header">Order Summary</div>
                     <p>{{chCart.length}} games</p>
@@ -50,7 +51,7 @@
                     <hr>
                     <div class="row lower">
                         <div class="col text-left">Subtotal</div>
-                        <div class="col text-right">$ 46.98</div>
+                        <div class="col text-right">{{totalPrice |currency:'EUR'}}</div>
                     </div>
                     <div class="row lower">
                         <div class="col text-left">Delivery</div>
@@ -58,9 +59,9 @@
                     </div>
                     <div class="row lower">
                         <div class="col text-left"><b>Total to pay</b></div>
-                        <div class="col text-right"><b>$ 46.98</b></div>
+                        <div class="col text-right"><b>{{totalPrice |currency:'EUR'}}</b></div>
                     </div>
-                     <button (click)="saveOrder()" class="btn">Place order</button>
+                     <button (click)="saveOrder()" class="btn"  id="btnOrder" name="btnOrder">Place order</button>
                     <p class="text-muted text-center">Complimentary Shipping & Returns</p>
                 </div>
             </div>

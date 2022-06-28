@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart } from 'src/app/models/cart';
 import { Order } from 'src/app/models/order';
+import { Orderhistory } from 'src/app/models/orderhistory';
 import { User } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
@@ -19,6 +21,8 @@ export class UserInformationComponent implements OnInit {
   unmatchedPassword:boolean = false;
   optionsVisibility:boolean = false;
   orders:Order[] = [];
+  orderHistory:Orderhistory[] = [];
+
 
   constructor(private userService:UserService, private cartService:CartService) { }
 
@@ -73,10 +77,32 @@ export class UserInformationComponent implements OnInit {
 
   viewHistory(){
     this.cartService.getOrderHistory().subscribe({
-      next:(data)=>{
+      next:(data:Order[])=>{
         console.log("Fetching Order history");
         console.log(data);
-        this.orders = data;
+        if(data != null){            
+          this.orders = data;
+          this.orderHistory = [];
+          let quantity:number = 0;
+          let index = 0
+          let gm = 0;
+
+          while( index < this.orders.length){
+            quantity = 0;
+            gm = index;
+
+            while(gm < this.orders[index].games.length){
+                quantity += 1;
+                gm++;
+            }
+            let historyItem:Orderhistory = new Orderhistory(this.orders[index].orderId, this.orders[index].orderDate, 
+                          this.orders[index].games[index],quantity);
+            index++;
+          }
+         
+        }else{
+          console.log("Orders length is zero!");
+        }
       },
       error:()=>{
         console.log("No Orders.");

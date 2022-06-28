@@ -58,19 +58,31 @@
     <button class="btn btn-primary" (click)="viewHistory()">View Order history</button>
   </div>
 
-  <div class="row" *ngIf="orders.length>0">
-    <table *ngFor="let order of orders">
+  <div class="row" *ngIf="orderHistory.length>0">
+    <table class="table table-hover table-light" *ngFor="let order of orderHistory">
         <thead>
           <tr>
-            <th>Order Id:{{order.orderId}} <br>
-            Order Date:{{order.orderDate}}</th>
+            <th>Order Id: {{order.orderId}}</th>
+            <th>Order Date: {{order.orderDate}}</th>
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let game of order.games">
-              <td>{{game.gameID}} <br>
-              {{game.name}}</td>
-            </tr>
+          <tr>
+            <td>
+              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">
+            </td>
+            <td>
+              <span><b>{{order.game.name}}</b></span>
+              <br>
+              <span><b>Game ID:</b> {{order.game.gameID}}</span>
+              <br>
+              <span><b>Release Date:</b> {{order.game.releaseDate|date:'yyyy-MM-dd'}}</span>
+              <br>
+              <span><b>Retail Price:</b> {{order.game.retailPrice | currency:'EUR'}}</span>
+              <br>
+              <span><b>Quantity:</b> {{order.quantity}}</span>
+            </td>
+          </tr>
         </tbody>
     </table>
     <br>

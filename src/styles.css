@@ -1,58 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
-/* body{
+
+body{
   --text-color: rgba(0, 0, 0, 0.644);
-  background-color: rgb(221, 223, 250);
-  --btn-bg-color: rgb(31, 29, 29);
-  --btn-txt-color: rgba(219, 221, 240, 0.219);
+  /*background-color: rgb(221, 223, 250);*/
+  background-color: rgb(218, 232, 250);
+
+
+
 }
 
 body.dark-theme{
   --text-color: rgb(177, 178, 192);
-  background-color: rgba(0, 0, 0, 0.856); 
-  --btn-bg-color: rgba(0, 0, 0, 0);
-  --btn-txt-color: rgb(219, 221, 240);
-} */
-
- body{
-  --text-color: rgba(0, 0, 0, 0.644);
-  background-color: rgb(221, 223, 250);
-  
- 
-}
-
-body.dark-theme{
-  --text-color: rgb(177, 178, 192);
-  background-color: rgba(0, 0, 0, 0.856); 
+  background-color: rgba(0, 0, 0, 0.856);
 
 }
 
-/* .btnmode{
-  padding: 10px;
-  border: none;
-  border-radius:2px;
-  background-color: var(--btn-bg-color);
-  
-}
 
-h5{
-color: rgba(17, 168, 228, 0.747);} */ 
-
-
-
-
-
-/* CSS */
-.btnmode,
-.btnmode:after {
-  width: 150px;
-  height: 76px;
-  line-height: 78px;
+.btnmode{
+  right: -170px;
+  top: -10px;
+  width: 280px;
+  height: 40px;
+  line-height: 50px;
   font-size: 20px;
   font-family: 'Bebas Neue', sans-serif;
   background: linear-gradient(45deg, transparent 5%, #4097d1d3 5%);
   border: 0;
   color: #fff;
-  letter-spacing: 3px;
   box-shadow: 6px 0px 0px #0d6d70;
   outline: transparent;
   position: relative;
@@ -61,77 +34,13 @@ color: rgba(17, 168, 228, 0.747);} */
   touch-action: manipulation;
 }
 
-.btnmode:after {
-  --slice-0: inset(50% 50% 50% 50%);
-  --slice-1: inset(80% -6px 0 0);
-  --slice-2: inset(50% -6px 30% 0);
-  --slice-3: inset(10% -6px 85% 0);
-  --slice-4: inset(40% -6px 43% 0);
-  --slice-5: inset(80% -6px 5% 0);
-  
-  content: 'CHANGE MODE';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #571d30 5%);
-  text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
-  clip-path: var(--slice-0);
+
+
+.btnmode:hover{
+  background:#215269;
+  transition: 0.7s;
 }
 
-.btnmode:hover:after {
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
-}
-
-@keyframes glitch {
-  0% {
-    clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
-  10% {
-    clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
-  20% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
-  30% {
-    clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
-  40% {
-    clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
-  50% {
-    clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
-  60% {
-    clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
-  70% {
-    clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
-  80% {
-    clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
-  90% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
-  100% {
-    clip-path: var(--slice-1);
-    transform: translate(0);
-  }
-}
 
 @media (min-width: 768px) {
   .btnmode,
