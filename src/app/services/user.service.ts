@@ -27,7 +27,7 @@ export class UserService {
   }
 
   logout(){
-    this.activeUser = null; 
+    this.activeUser = null;
     this.isLoggedIn = false;
   }
 
@@ -41,8 +41,8 @@ export class UserService {
   }
 
   updatePwd(pwd:string):Observable<unknown>|null{
-    if(this.activeUser){  
-      console.log(this.activeUser.password);    
+    if(this.activeUser){
+      console.log(this.activeUser.password);
       this.activeUser.password = this.generateHash(pwd);
       console.log(this.activeUser.password);
       return this.http.put(this.url,this.activeUser,{withCredentials:true});
@@ -56,5 +56,13 @@ export class UserService {
     const hash = bcrypt.hashSync(password, salt);
     return hash;
  }
+
+  loggedUser = (): string | null => (sessionStorage.getItem("User")) ? sessionStorage.getItem("User") : "";
+
+  loggedUserEmail = (): string | null => (sessionStorage.getItem("Email")) ? sessionStorage.getItem("Email") : "";
+
+  isLogged = (): boolean => (sessionStorage.getItem("User")) ? true : false;
+
+  clearAll = (): void => sessionStorage.clear();
 
 }

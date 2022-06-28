@@ -6,7 +6,8 @@
   <li><a class="btn" routerLinkActive="active" routerLink="/register"><span class="material-icons md-account_circle" title="register"></span>Register</a></li>
   <li><a class="btn" routerLinkActive="active" routerLink="/login"><span class="material-icons md-log_in" title="login"></span>Login</a></li>
   <li><a class="btn" routerLinkActive="active" routerLink="/userInformation"><span class="material-icons md-account_box" title="userInformation"></span>User Information</a></li>
-  <li><a class="btn" routerLinkActive="active" routerLink="/logout"><span class="material-icons md-log_out" title="logout"></span>Logout</a></li>
+  <li><a class="btn" routerLinkActive="active" *ngIf="userService.isLogged()" routerLink="/logout"><span class="material-icons md-log_out" title="logout"></span>Logout {{ userService.loggedUser() }}</a></li>
+  <li><a class="btn disabled" routerLinkActive="active" *ngIf="!userService.isLogged()" routerLink="/logout"><span class="material-icons md-log_out" title="logout"></span>Logout</a></li>
   <br>
   <li><button (click)="toggleDarkTheme()" class="btnmode" ><h5>Change mode to dark/light</h5></button></li>
-</ul>
+ </ul>
