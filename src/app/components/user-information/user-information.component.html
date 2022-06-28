@@ -66,22 +66,17 @@
     <table class="table table-hover table-light" *ngFor="let order of orderHistory">
         <thead>
           <tr>
-            <th>Order Date: {{order.orderDate}}</th>
-            <th>Game</th>
+            <th>Order Placed: {{order.orderDate}}</th>
+            <th>Order Total: {{order.totalPrice| currency:'EUR'}}</th>
+            <th>Order # {{order.orderId}}</th>
           </tr>
         </thead>
         <tbody >
-<<<<<<< HEAD
           <tr *ngFor="let cartItem of  order.games">
             <td>   
               <span><b>Game ID:</b> {{cartItem.game.gameID}}</span>
              <br>
               <span><b>Release Date:</b> {{cartItem.game.releaseDate|date:'yyyy-MM-dd'}}</span>
-=======
-          <tr>
-            <td>
-              <span><b>Game ID:</b> {{order.game.gameID}}</span>
->>>>>>> 2652d1218223a464233ba7e8a170b5fcd08c96ea
               <br>
               <span><b>Retail Price:</b> {{cartItem.game.retailPrice | currency:'EUR'}}</span>
               <br>
@@ -89,21 +84,13 @@
               <br>
               <span><b>Total Price:</b> {{(cartItem.quantity*cartItem.game.retailPrice)| currency:'EUR'}}</span>
             </td>
-            <td>
+            <td colspan="2">
               <span><b>{{cartItem.game.name}}</b></span>
               <br>
-<<<<<<< HEAD
               <img src="{{cartItem.game.thumb}}" class="img-fluid rounded thumbnail-image">             
-=======
-              <img src="{{order.game.thumb}}" class="img-fluid rounded thumbnail-image">
->>>>>>> 2652d1218223a464233ba7e8a170b5fcd08c96ea
             </td>
           </tr>
         </tbody>
-        <tfoot>
-          <td>Order Total: </td>
-          <td>{{order.totalPrice| currency:'EUR'}}</td>
-        </tfoot>
     </table>
     <br>
   </div>
