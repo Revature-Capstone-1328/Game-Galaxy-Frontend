@@ -9,9 +9,11 @@ import { Game } from '../models/game';
 export class GameService {
 
   apiUrl: string = 'https://www.cheapshark.com/api/1.0/';
-  dbUrl: string = 'http://localhost:8087/game/';
+  //dbUrl: string = 'http://localhost:8087/game/';
+  dbUrl: string = 'http://34.224.99.20:8087/game/';
 
-  favUrl: string = 'http://localhost:8087/wishlist/';
+  //favUrl: string = 'http://localhost:8087/wishlist/';
+  favUrl: string = 'http://34.224.99.20:8087/wishlist/';
 
   cartGames:Game[] = [];
 

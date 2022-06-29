@@ -1,11 +1,11 @@
 <div *ngIf="cart.length==0" class="row">
-    <h4 style="color:rgba(124, 132, 156, 0.568)">Your shopping cart is empty!</h4>
-    <h5 style="color:rgba(124, 132, 156, 0.568)">Please add games from store or your wishlist.</h5>
+    <h4 class="message">Your shopping cart is empty!</h4>
+    <h5 class="message">Please add games from store or your wishlist.</h5>
 </div>
 <div class="container-fluid" >
     <div *ngIf="cart.length>0">
         <div class="row">
-        <h4 class="text-light">Shopping Cart</h4>
+        <h4 id="shopping-cart-title" class="text-light">Shopping Cart</h4>
         </div>
         <div class="row" >
             <table class="table table-hover table-light">
@@ -19,7 +19,7 @@
                 </thead>
                 <tbody >
                     <tr *ngFor="let cartItem of cart">
-                        <td><button  (click)="removeFromCart(cartItem)" class="btn btn-light">Remove</button></td>
+                        <td><button  (click)="removeFromCart(cartItem)" class="btn btn-light">-Remove</button></td>
                         <td>
                             <img src="{{cartItem.game.thumb}}" class="img-fluid rounded thumbnail-image">
                             <br>
@@ -34,19 +34,21 @@
                         <td>{{cartItem.quantity}}</td>
                         <td>{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</td>
                     </tr>
- 
+
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" align="right">Total Price:</td>
-                        <td>{{totalPrice|currency:'EUR'}}</td>
+                        <td colspan="3" align="right"><b>Total Price:</b></td>
+                        <td><b>{{totalPrice|currency:'EUR'}}</b></td>
                     </tr>
                 </tfoot>
-            </table> 
+            </table>
             <div align="center">
                 <button (click)=checkout() class="btn btn-light">Proceed to Checkout</button>
             </div>
         </div>
+        <br>
     </div>
+    <br><br><br>
 
 </div>

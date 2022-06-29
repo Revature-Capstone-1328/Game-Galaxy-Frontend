@@ -1,11 +1,11 @@
-<div >
-    <label>{{message}}</label>
+
+<div *ngIf="chCart.length==0" class="row">
+    <h5 class="message">Please proceed from Cart.</h5>
 </div>
-<br>
-<div class="container-fluid">
-     <div class="card-body">
+<div *ngIf="visible" class="container-fluid">
+     <div *ngIf="chCart.length > 0" class="card-body">
         <div class="row upper">
-            <span><i class="fa fa-check-circle-o"></i> Order details</span>
+            <span class="header">Order details</span>
         </div>
         <div class="row">
             <div class="col-md-5">
@@ -32,20 +32,20 @@
                             </div>
                         </div>
                         <input type="checkbox" id="save_card" class="align-left">
-                        <label for="save_card">Save card details</label>  
+                        <label for="save_card">Save card details</label>
                     </form>
-                </div>                        
+                </div>
             </div>
             <div class="col-md-7">
                 <div class="right border">
-                    <div class="header">Order Summary</div>
+                    <div><b>Order Summary</b></div>
                     <p>{{chCart.length}} games</p>
                     <div class="row item" *ngFor="let cartItem of chCart">
                         <div class="col-4 align-self-center"><img class="img-fluid" src="{{cartItem.game.thumb}}"></div>
                         <div class="col-8">
-                            <div class="row"><b>{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</b></div>
+                            <div class="row">{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</div>
                             <div class="row text-muted">{{cartItem.game.name}}</div>
-                            <div class="row">Qty:{{cartItem.quantity}}</div>
+                            <div class="row">Quantity: {{cartItem.quantity}}</div>
                         </div>
                     </div>
                     <hr>
@@ -71,3 +71,27 @@
     </div>
 </div>
 
+<div class="container-fluid" *ngIf="messageVisible">
+    <br>
+   <h4 class="message">Thank you for your Order.</h4>
+   <br>
+    <div class="col-md-7">
+        <div class="right border">
+            <div><b>Order Summary</b></div>
+            <p>{{chCart.length}} games</p>
+            <div class="row item" *ngFor="let cartItem of chCart">
+                <div class="col-4 align-self-center"><img class="img-fluid" src="{{cartItem.game.thumb}}"></div>
+                <div class="col-3">
+                    <div class="row">{{(cartItem.game.retailPrice * cartItem.quantity)|currency:'EUR'}}</div>
+                    <div class="row text-muted">{{cartItem.game.name}}</div>
+                    <div class="row">Quantity: {{cartItem.quantity}}</div>
+                </div>
+            </div>
+            <hr>
+            <div class="row lower">
+                <div class="col-4 text-left"><b>Order Total</b></div>
+                <div class="col-3"><b>{{totalPrice |currency:'EUR'}}</b></div>
+            </div>
+        </div>
+    </div>
+</div>

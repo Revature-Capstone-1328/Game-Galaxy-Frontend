@@ -16,8 +16,8 @@ export class CheckoutComponent implements OnInit {
   username:string = (this.userService.activeUser)?this.userService.activeUser.username:"";
   chCart:Cart[] = [];
   totalPrice:number = 0;
-  message:string = "";
-  disable:boolean = false;
+  visible:boolean = true;
+  messageVisible:boolean = false;
 
   constructor(private userService:UserService, private cartService:CartService,private gameService:GameService,) { }
 
@@ -37,7 +37,6 @@ export class CheckoutComponent implements OnInit {
 
   saveOrder(){
     console.log("saving order");
-    this.message="";
     
     // save the order to DB only if the user is logged in.
     if (this.username != "" && this.chCart.length > 0 ){
@@ -57,23 +56,26 @@ export class CheckoutComponent implements OnInit {
           this.cartService.saveOrder(order).subscribe({
             next:()=>{
               console.log("Order saved.");
-              this.message = "Thank you for placing the Order"
-             // this.disable = true;
+              this.messageVisible = true;
+              this.visible = false
+
               this.cartService.checkoutCart = [];
               this.gameService.cartGames = [];
-              this.chCart = []; 
-              this.totalPrice = 0;
+              //this.chCart = []; 
+              //this.totalPrice = 0;
             },
             error:()=>{
               console.log("Couldn't save order."); 
             }
           })
       }else{
-      this.message = "Thank you for placing the Order"
-      this.cartService.checkoutCart = [];
-      this.gameService.cartGames = [];
-      this.chCart = []; 
-      this.totalPrice = 0;
+        this.messageVisible = true;
+        this.visible = false
+    
+        this.cartService.checkoutCart = [];
+        this.gameService.cartGames = [];
+        //this.chCart = []; 
+        //this.totalPrice = 0;
     }
   }
 

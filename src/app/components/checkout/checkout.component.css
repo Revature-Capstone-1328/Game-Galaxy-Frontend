@@ -30,7 +30,7 @@ body{
         background-image: url("https://i.imgur.com/4bg1e6u.jpg");
         background-size: cover;
         background-repeat: no-repeat;
-    }  
+    }
     .card-top{
         padding: 0.7rem 1rem;
     }
@@ -81,7 +81,7 @@ input:focus::-webkit-input-placeholder
 }
 .left{
     background-color: #ffffff;
-    padding: 2vh;   
+    padding: 2vh;
 }
 .left img{
     width: 2rem;
@@ -119,7 +119,7 @@ input:focus::-webkit-input-placeholder
     color: white;
     -webkit-box-shadow: none;
     -webkit-user-select: none;
-    transition: none; 
+    transition: none;
 }
 .btn:hover{
     color: white;
@@ -135,3 +135,17 @@ input[type=checkbox]{
     width: unset;
     margin-bottom: unset;
 }
+
+
+.img-fluid {
+  border-radius: 5px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 180px;
+  height: 70px;
+}
+
+.message {
+    color: #333;
+    margin-left: 25px;
+    margin-top: 25px;
+  }
