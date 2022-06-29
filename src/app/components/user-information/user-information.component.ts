@@ -24,11 +24,10 @@ export class UserInformationComponent implements OnInit {
   orders:Order[] = [];
   orderHistory:Orderhistory[] = [];
 
-
   constructor(private userService:UserService, private cartService:CartService) { }
 
-
   ngOnInit(): void {
+
   }
 
   updateEmail(){
@@ -83,9 +82,7 @@ export class UserInformationComponent implements OnInit {
    // let arr = Array(m).fill().map(() => Array(n));
     console.log(arr);
   
-   }
-
-   
+   }   
   
   viewHistory(){
     this.cartService.getOrderHistory().subscribe({

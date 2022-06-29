@@ -10,7 +10,8 @@ import { UserInformationComponent } from '../components/user-information/user-in
   providedIn: 'root'
 })
 export class UserService {
-  url:string = 'http://localhost:8087/users/';
+  //url:string = 'http://localhost:8087/users/';
+  url:string = 'http://34.224.99.20:8087/users/';
 
   activeUser:User|null = null;
   isLoggedIn:boolean = false;
